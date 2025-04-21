@@ -52,3 +52,17 @@
 ├── tsconfig.json       # TypeScript config
 ├── index.html          # Entry point
 └── README.md           # You're here!
+Screenshots
+![image](https://github.com/user-attachments/assets/d520571a-87ba-4593-961d-2401c1f3a835)
+![image](https://github.com/user-attachments/assets/39525ed2-8edc-47ec-8e2f-7a0510cd00de)
+
+
+![image](https://github.com/user-attachments/assets/ccecb049-d0a3-4c5e-b788-e77a85e01f35)
+![image](https://github.com/user-attachments/assets/719b116f-02a4-43c7-9737-a5404d3caf9b)
+![image](https://github.com/user-attachments/assets/7118ea0b-35e1-46a8-b805-4088c1d2611c)
+![image](https://github.com/user-attachments/assets/af5b668d-c538-43fc-93d6-71cab5200c26)
+
+
+
+
+
