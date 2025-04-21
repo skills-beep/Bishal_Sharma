@@ -52,6 +52,45 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+                druk: {
+                    50: '#f5f8ff',
+                    100: '#edf2ff',
+                    200: '#d9e4ff',
+                    300: '#b8cbff',
+                    400: '#8fa7ff',
+                    500: '#6180ff',
+                    600: '#3a56f5',
+                    700: '#2a3fe0',
+                    800: '#2534b6',
+                    900: '#253391',
+                    950: '#131a4d'
+                },
+                saffron: {
+                    50: '#fff8ed',
+                    100: '#ffefd4',
+                    200: '#ffdaa8',
+                    300: '#ffbf71',
+                    400: '#ff9a36',
+                    500: '#ff7d11',
+                    600: '#fb6006',
+                    700: '#cc4207',
+                    800: '#a2340f',
+                    900: '#842e11',
+                    950: '#461504'
+                },
+                mountain: {
+                    50: '#f7f7f7',
+                    100: '#e3e3e3',
+                    200: '#c8c8c8',
+                    300: '#a4a4a4',
+                    400: '#818181',
+                    500: '#666666',
+                    600: '#515151',
+                    700: '#434343',
+                    800: '#383838',
+                    900: '#313131',
+                    950: '#1a1a1a'
+                },
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
