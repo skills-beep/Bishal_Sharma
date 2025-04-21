@@ -1,4 +1,3 @@
-
 import { Product, Category, User } from "@/types";
 
 // Mock Categories
@@ -6,32 +5,32 @@ export const categories: Category[] = [
   {
     id: "1",
     name: "Bhutanese Textiles",
-    image: "/images/categories/textiles.jpg"
+    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=600&q=80"
   },
   {
     id: "2",
     name: "Handicrafts",
-    image: "/images/categories/handicrafts.jpg"
+    image: "https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=600&q=80"
   },
   {
     id: "3",
     name: "Traditional Food",
-    image: "/images/categories/food.jpg"
+    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
   },
   {
     id: "4",
     name: "Art & Paintings",
-    image: "/images/categories/art.jpg"
+    image: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=600&q=80"
   },
   {
     id: "5",
     name: "Jewelry",
-    image: "/images/categories/jewelry.jpg"
+    image: "https://images.unsplash.com/photo-1527576539890-dfa815648363?auto=format&fit=crop&w=600&q=80"
   },
   {
     id: "6",
     name: "Prayer Items",
-    image: "/images/categories/prayer.jpg"
+    image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=600&q=80"
   }
 ];
 
@@ -43,7 +42,10 @@ export const products: Product[] = [
     description: "Hand-woven traditional Bhutanese Kira made with 100% natural cotton and traditional patterns.",
     price: 8500,
     category: "1",
-    images: ["/images/products/kira1.jpg", "/images/products/kira2.jpg"],
+    images: [
+      "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=600&q=80"
+    ],
     seller: {
       id: "1",
       name: "Dorji Wangmo"
@@ -57,7 +59,9 @@ export const products: Product[] = [
     description: "Traditional wooden phallus carving, believed to ward off evil spirits. Hand-carved by local artisans.",
     price: 1200,
     category: "2",
-    images: ["/images/products/phallus1.jpg"],
+    images: [
+      "https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=600&q=80"
+    ],
     seller: {
       id: "2",
       name: "Tshering Dorji"
@@ -71,7 +75,10 @@ export const products: Product[] = [
     description: "Organic red rice grown in the high-altitude fields of Paro Valley. Rich in nutrients and distinct in flavor.",
     price: 350,
     category: "3",
-    images: ["/images/products/rice1.jpg", "/images/products/rice2.jpg"],
+    images: [
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80",
+      "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80"
+    ],
     seller: {
       id: "3",
       name: "Karma Yangzom"
@@ -85,7 +92,9 @@ export const products: Product[] = [
     description: "Hand-painted Thangka depicting Buddha Shakyamuni, created using traditional techniques and natural pigments.",
     price: 15000,
     category: "4",
-    images: ["/images/products/thangka1.jpg"],
+    images: [
+      "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=600&q=80"
+    ],
     seller: {
       id: "4",
       name: "Jigme Wangchuk"
@@ -99,7 +108,9 @@ export const products: Product[] = [
     description: "Handcrafted silver ritual box with traditional Bhutanese designs, used for carrying precious items.",
     price: 4500,
     category: "5",
-    images: ["/images/products/koma1.jpg"],
+    images: [
+      "https://images.unsplash.com/photo-1527576539890-dfa815648363?auto=format&fit=crop&w=600&q=80"
+    ],
     seller: {
       id: "5",
       name: "Pema Tshomo"
@@ -113,7 +124,9 @@ export const products: Product[] = [
     description: "Set of five traditional prayer flags in different colors, printed with sacred mantras.",
     price: 600,
     category: "6",
-    images: ["/images/products/prayer1.jpg"],
+    images: [
+      "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=600&q=80"
+    ],
     seller: {
       id: "1",
       name: "Dorji Wangmo"
@@ -127,7 +140,9 @@ export const products: Product[] = [
     description: "Hand-woven men's traditional dress (Gho) made with premium fabric and featuring classic patterns.",
     price: 7800,
     category: "1",
-    images: ["/images/products/gho1.jpg"],
+    images: [
+      "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=600&q=80"
+    ],
     seller: {
       id: "2",
       name: "Tshering Dorji"
@@ -141,7 +156,9 @@ export const products: Product[] = [
     description: "Handwoven bamboo basket, perfect for storage or as a decorative piece.",
     price: 850,
     category: "2",
-    images: ["/images/products/basket1.jpg"],
+    images: [
+      "https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=600&q=80"
+    ],
     seller: {
       id: "3",
       name: "Karma Yangzom"
