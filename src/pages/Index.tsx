@@ -1,7 +1,8 @@
-import HomePage from "./HomePage";
+
+import { Redirect } from "react-router-dom";
 
 const Index = () => {
-  return <HomePage />;
+  return <Redirect to="/" />;
 };
 
 export default Index;
