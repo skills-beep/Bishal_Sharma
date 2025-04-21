@@ -4,15 +4,15 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useCart } from "@/contexts/CartContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ShoppingCart, User, Search, Menu, X } from "lucide-react";
+import { ShoppingCart, User, Search, Menu } from "lucide-react";
 import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { ThemeToggle } from "@/components/ui/theme-toggle"; // Added import
 
 export function Navbar() {
   const { user, logout } = useAuth();
   const { totalItems } = useCart();
   const [searchQuery, setSearchQuery] = useState("");
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -47,6 +47,8 @@ export function Navbar() {
         </div>
         
         <div className="flex items-center gap-2">
+          <ThemeToggle /> {/* Added ThemeToggle here */}
+          
           <div className="hidden md:flex items-center gap-2">
             <Link to="/categories" className="text-sm font-medium">
               Categories
