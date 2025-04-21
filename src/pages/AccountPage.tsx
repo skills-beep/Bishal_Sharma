@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -19,13 +18,9 @@ export default function AccountPage() {
   const { toast } = useToast();
   const [userProducts, setUserProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    newPassword: "",
-    confirmPassword: "",
-  });
+
+  const [balance, setBalance] = useState<number>(0);
+  const [depositAmount, setDepositAmount] = useState<string>("");
 
   useEffect(() => {
     if (!user) {
@@ -52,7 +47,41 @@ export default function AccountPage() {
     };
 
     fetchUserProducts();
+
+    const stored = localStorage.getItem(`balance_${user.id}`);
+    if (stored) setBalance(Number(stored));
   }, [user, navigate]);
+
+  const handleDeposit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const amt = parseFloat(depositAmount);
+    if (isNaN(amt) || amt <= 0) {
+      toast({
+        title: "Invalid Amount",
+        description: "Please enter a valid deposit amount.",
+        variant: "destructive",
+      });
+      return;
+    }
+    const newBalance = balance + amt;
+    setBalance(newBalance);
+    if (user) {
+      localStorage.setItem(`balance_${user.id}`, String(newBalance));
+    }
+    setDepositAmount("");
+    toast({
+      title: "Deposit Successful",
+      description: `Nu. ${amt.toLocaleString()} deposited into your account.`,
+    });
+  };
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    newPassword: "",
+    confirmPassword: "",
+  });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -143,10 +172,11 @@ export default function AccountPage() {
 
             <div className="md:col-span-2">
               <Tabs defaultValue="profile" className="w-full">
-                <TabsList className="grid w-full grid-cols-3">
+                <TabsList className="grid w-full grid-cols-4">
                   <TabsTrigger value="profile">Profile</TabsTrigger>
                   <TabsTrigger value="orders">Orders</TabsTrigger>
                   <TabsTrigger value="products">My Products</TabsTrigger>
+                  <TabsTrigger value="payments">Payments</TabsTrigger>
                 </TabsList>
                 
                 <TabsContent value="profile" className="mt-6 space-y-8">
@@ -342,6 +372,40 @@ export default function AccountPage() {
                         </Button>
                       </div>
                     )}
+                  </div>
+                </TabsContent>
+
+                <TabsContent value="payments" className="mt-6">
+                  <div className="rounded-lg border shadow-sm max-w-md mx-auto">
+                    <div className="p-6">
+                      <h3 className="text-lg font-semibold mb-2">My Balance</h3>
+                      <div className="flex items-center gap-2 mb-4">
+                        <span className="text-3xl font-bold">
+                          Nu. {balance.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+                        </span>
+                      </div>
+                      <form onSubmit={handleDeposit} className="space-y-4 mt-4">
+                        <div className="space-y-2">
+                          <Label htmlFor="deposit">Deposit Amount</Label>
+                          <Input
+                            id="deposit"
+                            name="deposit"
+                            type="number"
+                            value={depositAmount}
+                            min="1"
+                            step="0.01"
+                            placeholder="Enter amount (Nu.)"
+                            onChange={(e) => setDepositAmount(e.target.value)}
+                          />
+                        </div>
+                        <Button type="submit" className="w-full">
+                          Deposit Money
+                        </Button>
+                      </form>
+                      <p className="text-xs text-muted-foreground mt-4">
+                        Note: This is a mock balance for demonstration only. Funds are not actually stored or transferred.
+                      </p>
+                    </div>
                   </div>
                 </TabsContent>
               </Tabs>
