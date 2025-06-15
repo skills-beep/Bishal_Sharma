@@ -1,68 +1,54 @@
-# 🛍️ DrukBazaar – Bhutanese eCommerce Platform
+# Bishal Sharma - Developer Portfolio 🌐
 
-**DrukBazaar** is a fully functional eCommerce platform built for the people of Bhutan to buy, sell, and explore traditional and modern products. Inspired by Bhutanese culture and design, the platform provides seamless user experience and mobile-friendly access to local shopping.
+Welcome to my personal portfolio website! This site showcases my projects, skills, experiences, and provides a way to connect with me. Built with a modern and responsive design, it's a reflection of who I am as a Computer Science student and aspiring developer.
+
+## 🧑‍💻 About Me
+
+Hi, I'm **Bishal Sharma**, a Computer Science student passionate about web development, problem-solving, and building meaningful digital experiences. This portfolio serves as a platform to present my work, share my journey, and connect with like-minded individuals and opportunities.
+
+- 🎓 B.Sc. in Computer Science, Chandigarh University
+- 📍 Location: Bhutan
+- 💼 Focus Areas: Web Development, UI/UX Design, Java Projects, React-based Apps
+
+## 🛠️ Technologies Used
+
+- HTML5, CSS3, JavaScript
+- React.js / Tailwind CSS
+- Git & GitHub
+- Responsive Design Techniques
+- [Optional] Vercel for Deployment
+
+## 📂 Website Sections
+
+- **Home** – Introduction and call to action
+- **About Me** – A brief bio and background
+- **Projects** – Showcases my featured work and personal projects
+- **Skills** – Tools and technologies I work with
+- **Contact** – Ways to reach me (email, social media links)
+
+## 📸 Featured Projects
+
+Some projects highlighted on the website:
+- 🛍️ **DrukBazaar** – Bhutanese eCommerce Platform
+- ⚔️ **Thunder Dragon Quest** – Bhutan-themed React game
+- 📊 **Finance Tracker** – Excel-based finance tool
+- 💪 **FlexFit** – Kotlin-based fitness tracking app
+
+## 📬 Contact Me
+
+- **Email**: bishalsharma153@gmail.com  
+- **Phone**: +975 17658134  
+- **GitHub**: [skills-beep](https://github.com/skills-beep)  
+- **LinkedIn**: [Bishal Sharma](https://www.linkedin.com/in/bishal-sharma-12b7211b6/)
 
 ---
 
-## 🚀 Features
+## 🚀 Getting Started (for developers)
 
-- ✅ **User Authentication**  
-  Signup, login, logout, and password reset functionality.
-
-- 📦 **Product Management**  
-  Users can upload products with images, descriptions, categories, and pricing.
-
-- 🛒 **Shopping Cart & Checkout**  
-  Functional cart system with quantity management and purchase flow.
-
-- 🧑‍💼 **Admin Panel**  
-  Admins can manage products, users, and moderate content.
-
-- 🎨 **Responsive Design**  
-  Mobile-first layout with Bhutanese-inspired color palette and fonts.
-
-- 🗂️ **Product Categories**  
-  Organized browsing via traditional product classifications.
-
-- 💳 **Payment Section (In Progress)**  
-  Placeholder setup for integration with payment gateways.
-
----
-
-## 🛠️ Tech Stack
-
-- **Framework:** Vite + React + TypeScript  
-- **Styling:** TailwindCSS + ShadCN/UI  
-- **State Management:** React Context / Zustand  
-- **Authentication & Backend:** Supabase  
-- **Build Tools:** Bun, ESLint, Prettier  
-- **Deployment:** (To be updated based on your deployment platform)
-
----
-
-## 📁 Project Structure
+If you'd like to clone or contribute to this portfolio:
 
 ```bash
-.
-├── public/             # Static assets
-├── src/                # Main application source code
-├── components.json     # ShadCN component definitions
-├── tailwind.config.ts  # TailwindCSS setup
-├── vite.config.ts      # Vite configuration
-├── tsconfig.json       # TypeScript config
-├── index.html          # Entry point
-└── README.md           # You're here!
-Screenshots
-![image](https://github.com/user-attachments/assets/d520571a-87ba-4593-961d-2401c1f3a835)
-![image](https://github.com/user-attachments/assets/39525ed2-8edc-47ec-8e2f-7a0510cd00de)
-
-
-![image](https://github.com/user-attachments/assets/ccecb049-d0a3-4c5e-b788-e77a85e01f35)
-![image](https://github.com/user-attachments/assets/719b116f-02a4-43c7-9737-a5404d3caf9b)
-![image](https://github.com/user-attachments/assets/7118ea0b-35e1-46a8-b805-4088c1d2611c)
-![image](https://github.com/user-attachments/assets/af5b668d-c538-43fc-93d6-71cab5200c26)
-
-
-
-
-
+git clone https://github.com/skills-beep/portfolio-website.git
+cd portfolio-website
+npm install
+npm start
