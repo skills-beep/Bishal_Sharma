@@ -1,9 +1,11 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
+import PortfolioPage from "./pages/PortfolioPage";
 import { ProductDetailPage, ProductsListPage, CategoriesPage } from "./pages/ProductPages";
 import { LoginPage, RegisterPage } from "./pages/AuthPages";
 import { CartPage, CheckoutPage, OrderSuccessPage } from "./pages/CartPages";
@@ -29,7 +31,9 @@ const App = () => (
             <BrowserRouter>
               <Routes>
                 {/* Main pages */}
-                <Route path="/" element={<HomePage />} />
+                <Route path="/" element={<PortfolioPage />} />
+                <Route path="/portfolio" element={<PortfolioPage />} />
+                <Route path="/home" element={<HomePage />} />
                 <Route path="/airline" element={<DrukAirPage />} />
                 <Route path="/products" element={<ProductsListPage />} />
                 <Route path="/products/:id" element={<ProductDetailPage />} />
