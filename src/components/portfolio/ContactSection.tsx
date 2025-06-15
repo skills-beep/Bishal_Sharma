@@ -18,15 +18,15 @@ export function ContactSection() {
             <div className="space-y-4">
               <div className="flex items-center gap-4">
                 <Mail className="h-5 w-5 text-primary" />
-                <span className="text-foreground">hello@portfolio.dev</span>
+                <span className="text-foreground">bishalsharma153@gmail.com</span>
               </div>
               <div className="flex items-center gap-4">
                 <Phone className="h-5 w-5 text-primary" />
-                <span className="text-foreground">+1 (555) 000-0000</span>
+                <span className="text-foreground">+975 17658134</span>
               </div>
               <div className="flex items-center gap-4">
                 <MapPin className="h-5 w-5 text-primary" />
-                <span className="text-foreground">Available Worldwide</span>
+                <span className="text-foreground">Samtse, Bhutan</span>
               </div>
             </div>
           </div>
