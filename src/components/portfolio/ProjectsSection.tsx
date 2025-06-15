@@ -21,20 +21,20 @@ export function ProjectsSection() {
   return (
     <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-12">Projects</h2>
+        <h2 className="text-4xl font-bold text-center mb-12 text-foreground">Projects</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <div
               key={index}
-              className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-lg border border-gray-700 hover:border-purple-500 transition-colors"
+              className="bg-card/50 backdrop-blur-sm p-6 rounded-lg border border-border hover:border-purple-500 transition-all duration-300 hover:scale-105 hover:shadow-lg"
             >
-              <h3 className="text-xl font-bold mb-3 text-white">{project.title}</h3>
-              <p className="text-gray-300 mb-4">{project.description}</p>
+              <h3 className="text-xl font-bold mb-3 text-card-foreground">{project.title}</h3>
+              <p className="text-muted-foreground mb-4">{project.description}</p>
               <div className="flex flex-wrap gap-2">
                 {project.tech.map((tech) => (
                   <span
                     key={tech}
-                    className="px-3 py-1 bg-purple-600/20 text-purple-300 rounded-full text-sm"
+                    className="px-3 py-1 bg-purple-600/20 text-purple-400 rounded-full text-sm border border-purple-500/30"
                   >
                     {tech}
                   </span>

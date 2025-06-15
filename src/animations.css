@@ -43,6 +43,105 @@
   }
 }
 
+/* New enhanced animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes floatRandom {
+  0%, 100% {
+    transform: translate(0px, 0px);
+  }
+  25% {
+    transform: translate(10px, -10px);
+  }
+  50% {
+    transform: translate(-5px, -20px);
+  }
+  75% {
+    transform: translate(-10px, -5px);
+  }
+}
+
+@keyframes floatHorizontal {
+  0%, 100% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(30px);
+  }
+}
+
+@keyframes floatHorizontalReverse {
+  0%, 100% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(-30px);
+  }
+}
+
+@keyframes slideVertical {
+  0% {
+    transform: translateY(-100vh);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 255, 200, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 255, 200, 0.8);
+  }
+}
+
+@keyframes rotateSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinSlowReverse {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes drawPath {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+  100% {
+    stroke-dasharray: 100 0;
+  }
+}
+
 .animate-fade-in {
   animation: fadeIn 0.5s ease forwards;
 }
@@ -57,6 +156,63 @@
 
 .animate-scale-in {
   animation: scaleIn 0.3s ease forwards;
+}
+
+/* New animation classes */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-random {
+  animation: floatRandom 8s ease-in-out infinite;
+}
+
+.animate-float-horizontal {
+  animation: floatHorizontal 12s ease-in-out infinite;
+}
+
+.animate-float-horizontal-reverse {
+  animation: floatHorizontalReverse 10s ease-in-out infinite;
+}
+
+.animate-slide-vertical {
+  animation: slideVertical 15s linear infinite;
+}
+
+.animate-twinkle {
+  animation: twinkle 2s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 3s ease-in-out infinite;
+}
+
+.animate-rotate-slow {
+  animation: rotateSlow 20s linear infinite;
+}
+
+.animate-spin-slow-reverse {
+  animation: spinSlowReverse 25s linear infinite;
+}
+
+.animate-draw-path {
+  animation: drawPath 8s ease-in-out infinite;
+}
+
+.animate-bounce-slow {
+  animation: bounce 4s infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse 4s infinite;
+}
+
+.animate-float-slow {
+  animation: float 10s ease-in-out infinite;
+}
+
+.animate-float-slow-reverse {
+  animation: float 12s ease-in-out infinite reverse;
 }
 
 .animate-delay-100 {
