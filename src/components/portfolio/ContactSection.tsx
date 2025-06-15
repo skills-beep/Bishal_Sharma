@@ -1,6 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MapPin } from "lucide-react";
 
 export function ContactSection() {
@@ -17,15 +18,15 @@ export function ContactSection() {
             <div className="space-y-4">
               <div className="flex items-center gap-4">
                 <Mail className="h-5 w-5 text-purple-400" />
-                <span className="text-gray-300">bishalsharma153@gmail.com</span>
+                <span className="text-gray-300">your.email@example.com</span>
               </div>
               <div className="flex items-center gap-4">
                 <Phone className="h-5 w-5 text-purple-400" />
-                <span className="text-gray-300">+975 17658134</span>
+                <span className="text-gray-300">+1 (555) 123-4567</span>
               </div>
               <div className="flex items-center gap-4">
                 <MapPin className="h-5 w-5 text-purple-400" />
-                <span className="text-gray-300">Samtse, Bhutan</span>
+                <span className="text-gray-300">Your City, Country</span>
               </div>
             </div>
           </div>
@@ -40,10 +41,10 @@ export function ContactSection() {
                 placeholder="Your Email"
                 className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
               />
-              <textarea
+              <Textarea
                 placeholder="Your Message"
                 rows={4}
-                className="w-full p-3 bg-gray-800/50 border border-gray-700 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
               />
               <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white">
                 Send Message
