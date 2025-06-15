@@ -8,25 +8,25 @@ export function CertificatesSection() {
       title: "Google AI Essentials",
       issuer: "Google",
       description: "Comprehensive understanding of AI fundamentals and practical applications",
-      link: "#", // Placeholder - user can add actual certificate link
+      link: "https://drive.google.com/file/d/1hmKM_vPOim-zwLRPSgnmW7_DHloALDSL/view?usp=drive_link",
     },
     {
       title: "Advanced React",
       issuer: "Meta",
       description: "Advanced React concepts including hooks, context, and performance optimization",
-      link: "#", // Placeholder - user can add actual certificate link
+      link: "https://drive.google.com/file/d/1byzlbN-wYdK-4Pj5RlW9DV1kzhfEqRVI/view?usp=drive_link",
     },
     {
-      title: "Meta Marketing",
+      title: "Advertising with Meta",
       issuer: "Meta",
       description: "Digital marketing strategies and social media marketing best practices",
-      link: "#", // Placeholder - user can add actual certificate link
+      link: "https://drive.google.com/file/d/1-c7TrLYXOmESqPg2HxIBYv-LVSfF8m1L/view?usp=drive_link",
     },
     {
       title: "Advanced Python",
       issuer: "Certification Authority",
       description: "Advanced Python programming concepts and data structures",
-      link: "#", // Placeholder - user can add actual certificate link
+      link: "https://drive.google.com/file/d/1v2x5cvs6gseDRyCpKn_-7wEjcVsyv1T8/view?usp=drive_link",
     },
   ];
 
