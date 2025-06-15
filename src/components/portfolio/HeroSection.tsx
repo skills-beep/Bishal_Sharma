@@ -11,6 +11,10 @@ export function HeroSection() {
     document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const openResume = () => {
+    window.open("https://drive.google.com/file/d/1Rxomm0yP2-gtmaJM9vxU3k5Af5T0mCkO/view?usp=drive_link", "_blank");
+  };
+
   return (
     <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16">
       <div className="max-w-6xl mx-auto">
@@ -49,6 +53,7 @@ export function HeroSection() {
                 View Projects <ArrowRight className="h-5 w-5" />
               </Button>
               <Button
+                onClick={openResume}
                 variant="outline"
                 className="border-gray-600 text-gray-300 hover:bg-gray-800 px-8 py-3 rounded-full text-lg"
               >
