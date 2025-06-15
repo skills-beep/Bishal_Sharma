@@ -8,25 +8,25 @@ export function ContactSection() {
   return (
     <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-12">Contact Me</h2>
+        <h2 className="text-4xl font-bold text-center mb-12 text-foreground">Contact Me</h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div>
-            <h3 className="text-2xl font-bold mb-6">Get in Touch</h3>
-            <p className="text-gray-300 mb-8">
+            <h3 className="text-2xl font-bold mb-6 text-foreground">Get in Touch</h3>
+            <p className="text-muted-foreground mb-8">
               I'm always open to discussing new opportunities and interesting projects.
             </p>
             <div className="space-y-4">
               <div className="flex items-center gap-4">
-                <Mail className="h-5 w-5 text-purple-400" />
-                <span className="text-gray-300">your.email@example.com</span>
+                <Mail className="h-5 w-5 text-primary" />
+                <span className="text-foreground">your.email@example.com</span>
               </div>
               <div className="flex items-center gap-4">
-                <Phone className="h-5 w-5 text-purple-400" />
-                <span className="text-gray-300">+1 (555) 123-4567</span>
+                <Phone className="h-5 w-5 text-primary" />
+                <span className="text-foreground">+1 (555) 123-4567</span>
               </div>
               <div className="flex items-center gap-4">
-                <MapPin className="h-5 w-5 text-purple-400" />
-                <span className="text-gray-300">Your City, Country</span>
+                <MapPin className="h-5 w-5 text-primary" />
+                <span className="text-foreground">Your City, Country</span>
               </div>
             </div>
           </div>
@@ -34,19 +34,19 @@ export function ContactSection() {
             <form className="space-y-6">
               <Input
                 placeholder="Your Name"
-                className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
+                className="bg-muted border-border text-foreground placeholder-muted-foreground"
               />
               <Input
                 type="email"
                 placeholder="Your Email"
-                className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
+                className="bg-muted border-border text-foreground placeholder-muted-foreground"
               />
               <Textarea
                 placeholder="Your Message"
                 rows={4}
-                className="bg-gray-800/50 border-gray-700 text-white placeholder-gray-400"
+                className="bg-muted border-border text-foreground placeholder-muted-foreground"
               />
-              <Button className="w-full bg-purple-600 hover:bg-purple-700 text-white">
+              <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
                 Send Message
               </Button>
             </form>
