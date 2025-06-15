@@ -3,15 +3,9 @@ export function EducationSection() {
   const education = [
     {
       degree: "Bachelor of Computer Science",
-      school: "University of Technology",
-      year: "2020-2024",
-      description: "Focused on software development and web technologies",
-    },
-    {
-      degree: "Frontend Development Bootcamp",
-      school: "Tech Academy",
-      year: "2023",
-      description: "Intensive program covering modern frontend frameworks",
+      school: "Chandigarh University",
+      year: "2022-2025",
+      description: "Focused on computer science fundamentals, software engineering principles, and modern development practices",
     },
   ];
 

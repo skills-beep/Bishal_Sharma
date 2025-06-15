@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Download, Mail } from "lucide-react";
+import { ArrowRight, Download, Mail, Linkedin } from "lucide-react";
 
 export function HeroSection() {
   const scrollToProjects = () => {
@@ -13,6 +13,10 @@ export function HeroSection() {
 
   const openResume = () => {
     window.open("https://drive.google.com/file/d/1Rxomm0yP2-gtmaJM9vxU3k5Af5T0mCkO/view?usp=drive_link", "_blank");
+  };
+
+  const openLinkedIn = () => {
+    window.open("https://www.linkedin.com/in/bishal-sharma-12b7211b6/", "_blank");
   };
 
   return (
@@ -59,6 +63,14 @@ export function HeroSection() {
               >
                 <Download className="h-5 w-5 mr-2" />
                 Resume
+              </Button>
+              <Button
+                onClick={openLinkedIn}
+                variant="outline"
+                className="border-gray-600 text-gray-300 hover:bg-gray-800 px-8 py-3 rounded-full text-lg"
+              >
+                <Linkedin className="h-5 w-5 mr-2" />
+                LinkedIn
               </Button>
               <Button
                 onClick={scrollToContact}

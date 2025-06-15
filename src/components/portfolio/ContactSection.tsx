@@ -17,15 +17,15 @@ export function ContactSection() {
             <div className="space-y-4">
               <div className="flex items-center gap-4">
                 <Mail className="h-5 w-5 text-purple-400" />
-                <span className="text-gray-300">bishal.sharma@email.com</span>
+                <span className="text-gray-300">bishalsharma153@gmail.com</span>
               </div>
               <div className="flex items-center gap-4">
                 <Phone className="h-5 w-5 text-purple-400" />
-                <span className="text-gray-300">+1 (555) 123-4567</span>
+                <span className="text-gray-300">+975 17658134</span>
               </div>
               <div className="flex items-center gap-4">
                 <MapPin className="h-5 w-5 text-purple-400" />
-                <span className="text-gray-300">San Francisco, CA</span>
+                <span className="text-gray-300">Samtse, Bhutan</span>
               </div>
             </div>
           </div>

@@ -5,6 +5,7 @@ import { HeroSection } from "@/components/portfolio/HeroSection";
 import { AboutSection } from "@/components/portfolio/AboutSection";
 import { SkillsSection } from "@/components/portfolio/SkillsSection";
 import { ProjectsSection } from "@/components/portfolio/ProjectsSection";
+import { CertificatesSection } from "@/components/portfolio/CertificatesSection";
 import { EducationSection } from "@/components/portfolio/EducationSection";
 import { ContactSection } from "@/components/portfolio/ContactSection";
 import { LoadingAnimation } from "@/components/portfolio/LoadingAnimation";
@@ -40,6 +41,9 @@ export default function PortfolioPage() {
           <ProjectsSection />
         </div>
         <div className="animate-scale-in animate-delay-500">
+          <CertificatesSection />
+        </div>
+        <div className="animate-fade-in animate-delay-300">
           <EducationSection />
         </div>
         <div className="animate-fade-in animate-delay-300">
