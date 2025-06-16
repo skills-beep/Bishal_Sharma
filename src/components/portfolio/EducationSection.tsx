@@ -19,7 +19,7 @@ export function EducationSection() {
     {
       degree: "Higher Secondary Education",
       school: "Samtse Higher Secondary School",
-      year: "2020-2022",
+      year: "",
       grade: "Science Stream",
       description: "Completed my higher secondary education with distinction in the Science stream, laying a strong foundation in mathematics, physics, and computer science. This period was crucial in developing my analytical thinking and problem-solving skills that now drive my passion for technology and innovation.",
       highlights: [
@@ -65,8 +65,12 @@ export function EducationSection() {
                   </h3>
                   <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-4">
                     <p className="text-blue-400 font-semibold text-lg">{edu.school}</p>
-                    <span className="hidden sm:block text-muted-foreground">•</span>
-                    <p className="text-muted-foreground">{edu.year}</p>
+                    {edu.year && (
+                      <>
+                        <span className="hidden sm:block text-muted-foreground">•</span>
+                        <p className="text-muted-foreground">{edu.year}</p>
+                      </>
+                    )}
                   </div>
                   {edu.cgpa && (
                     <div className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500/10 to-blue-500/10 px-4 py-2 rounded-full border border-green-500/20 mb-4">
