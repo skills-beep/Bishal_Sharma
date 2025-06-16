@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { PortfolioNavbar } from "@/components/portfolio/PortfolioNavbar";
 import { HeroSection } from "@/components/portfolio/HeroSection";
 import { AboutSection } from "@/components/portfolio/AboutSection";
+import { WhyHireMeSection } from "@/components/portfolio/WhyHireMeSection";
 import { SkillsSection } from "@/components/portfolio/SkillsSection";
 import { ProjectsSection } from "@/components/portfolio/ProjectsSection";
 import { CertificatesSection } from "@/components/portfolio/CertificatesSection";
@@ -33,6 +34,9 @@ export default function PortfolioPage() {
         </div>
         <div className="animate-fade-in animate-delay-200">
           <AboutSection />
+        </div>
+        <div className="animate-scale-in animate-delay-300">
+          <WhyHireMeSection />
         </div>
         <div className="animate-slide-in-right animate-delay-300">
           <SkillsSection />
