@@ -16,9 +16,14 @@ import {
 
 export function SkillsSection() {
   const skills = [
+    { name: "JavaScript", icon: Zap, color: "text-yellow-500" },
+    { name: "Java", icon: Code, color: "text-orange-600" },
+    { name: "C++", icon: Cpu, color: "text-blue-600" },
+    { name: "C", icon: Code, color: "text-gray-600" },
+    { name: "Python", icon: Code, color: "text-green-500" },
+    { name: "PHP", icon: Code, color: "text-purple-600" },
     { name: "React", icon: Code, color: "text-blue-500" },
     { name: "TypeScript", icon: Cpu, color: "text-blue-600" },
-    { name: "JavaScript", icon: Zap, color: "text-yellow-500" },
     { name: "HTML5", icon: Globe, color: "text-orange-500" },
     { name: "CSS3", icon: Palette, color: "text-blue-400" },
     { name: "Tailwind CSS", icon: Brush, color: "text-cyan-500" },

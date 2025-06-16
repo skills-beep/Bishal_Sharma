@@ -6,30 +6,14 @@ export function EducationSection() {
       school: "Chandigarh University",
       year: "2022-2025",
       cgpa: "8.6",
-      description: "Currently pursuing my Bachelor's degree with exceptional academic performance. Focused on cutting-edge computer science fundamentals, software engineering principles, and modern development practices. Consistently maintaining high academic standards while actively engaging in practical projects and real-world applications.",
-      highlights: [
-        "Specialized in Full-Stack Web Development",
-        "Advanced Data Structures & Algorithms",
-        "Database Management Systems",
-        "Software Engineering & Project Management",
-        "Artificial Intelligence & Machine Learning",
-        "Cloud Computing Technologies"
-      ]
+      description: "Currently pursuing my Bachelor's degree with exceptional academic performance. Focused on cutting-edge computer science fundamentals, software engineering principles, and modern development practices. Consistently maintaining high academic standards while actively engaging in practical projects and real-world applications."
     },
     {
       degree: "Higher Secondary Education",
       school: "Samtse Higher Secondary School",
       year: "",
       grade: "Science Stream",
-      description: "Completed my higher secondary education with distinction in the Science stream, laying a strong foundation in mathematics, physics, and computer science. This period was crucial in developing my analytical thinking and problem-solving skills that now drive my passion for technology and innovation.",
-      highlights: [
-        "Mathematics & Advanced Calculus",
-        "Physics & Applied Sciences",
-        "Computer Science Fundamentals",
-        "Strong analytical and logical reasoning",
-        "Leadership roles in student activities",
-        "Consistent academic excellence"
-      ]
+      description: "Completed my higher secondary education with distinction in the Science stream, laying a strong foundation in mathematics, physics, and computer science. This period was crucial in developing my analytical thinking and problem-solving skills that now drive my passion for technology and innovation."
     }
   ];
 
@@ -85,21 +69,9 @@ export function EducationSection() {
                 </div>
               </div>
               
-              <p className="text-muted-foreground leading-relaxed text-lg mb-6">
+              <p className="text-muted-foreground leading-relaxed text-lg">
                 {edu.description}
               </p>
-              
-              <div>
-                <h4 className="text-lg font-semibold text-foreground mb-4">Key Areas of Study:</h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {edu.highlights.map((highlight, idx) => (
-                    <div key={idx} className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full flex-shrink-0"></div>
-                      <span className="text-muted-foreground">{highlight}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </div>
           ))}
         </div>
