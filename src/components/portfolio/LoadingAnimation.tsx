@@ -7,10 +7,10 @@ export function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
   const [isTyping, setIsTyping] = useState(true);
 
   const texts = [
-    "Initializing portfolio...",
-    "Loading creative work...",
-    "Preparing amazing projects...",
-    "Almost ready..."
+    "Preparing workspace...",
+    "Loading professional profile...",
+    "Showcasing innovative projects...",
+    "Welcome to my digital space..."
   ];
 
   useEffect(() => {
@@ -56,18 +56,18 @@ export function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 overflow-hidden">
-      {/* Enhanced animated background particles */}
+      {/* Professional particle system */}
       <div className="absolute inset-0">
-        {Array.from({ length: 80 }).map((_, i) => (
+        {Array.from({ length: 50 }).map((_, i) => (
           <div
             key={i}
             className="absolute rounded-full animate-twinkle"
             style={{
-              width: `${Math.random() * 4 + 1}px`,
-              height: `${Math.random() * 4 + 1}px`,
+              width: `${Math.random() * 3 + 1}px`,
+              height: `${Math.random() * 3 + 1}px`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              backgroundColor: `hsl(${240 + Math.random() * 60}, 70%, ${60 + Math.random() * 30}%)`,
+              backgroundColor: `hsl(${220 + Math.random() * 40}, 60%, ${50 + Math.random() * 30}%)`,
               animationDelay: `${Math.random() * 3}s`,
               animationDuration: `${2 + Math.random() * 3}s`,
             }}
@@ -75,112 +75,73 @@ export function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
         ))}
       </div>
 
-      {/* Enhanced floating geometric shapes */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-20 w-20 h-20 border-2 border-purple-400/40 rotate-45 animate-spin-slow" />
-        <div className="absolute top-32 right-32 w-16 h-16 bg-gradient-to-r from-purple-400/20 to-pink-400/20 rounded-full animate-bounce-slow" />
-        <div className="absolute bottom-40 left-1/4 w-12 h-12 border-2 border-cyan-300/30 animate-pulse-slow" />
-        <div className="absolute bottom-20 right-20 w-24 h-24 border-2 border-purple-500/30 rounded-full animate-float" />
-        <div className="absolute top-1/2 left-10 w-8 h-8 bg-gradient-to-r from-blue-400/30 to-purple-400/30 transform rotate-45 animate-float-random" />
-        <div className="absolute top-10 right-1/4 w-14 h-14 border border-pink-400/40 rounded-full animate-float-horizontal" />
+      {/* Professional geometric elements */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-20 left-20 w-16 h-16 border border-blue-400/40 rotate-45 animate-spin-slow" />
+        <div className="absolute top-32 right-32 w-12 h-12 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full animate-bounce-slow" />
+        <div className="absolute bottom-40 left-1/4 w-10 h-10 border border-cyan-300/30 animate-pulse-slow" />
+        <div className="absolute bottom-20 right-20 w-20 h-20 border border-purple-500/30 rounded-full animate-float" />
       </div>
 
-      {/* Flowing lines */}
-      <svg className="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 1000 1000">
-        <path
-          d="M0,300 Q250,200 500,300 T1000,300"
-          stroke="url(#gradient1)"
-          strokeWidth="2"
-          fill="none"
-          className="animate-draw-path"
-        />
-        <path
-          d="M0,700 Q250,600 500,700 T1000,700"
-          stroke="url(#gradient2)"
-          strokeWidth="2"
-          fill="none"
-          className="animate-draw-path"
-          style={{animationDelay: '2s'}}
-        />
-        <defs>
-          <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0" />
-            <stop offset="50%" stopColor="#8b5cf6" stopOpacity="1" />
-            <stop offset="100%" stopColor="#ec4899" stopOpacity="0" />
-          </linearGradient>
-          <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#06b6d4" stopOpacity="0" />
-            <stop offset="50%" stopColor="#06b6d4" stopOpacity="1" />
-            <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0" />
-          </linearGradient>
-        </defs>
-      </svg>
+      {/* Clean professional grid background */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="w-full h-full" style={{
+          backgroundImage: `
+            linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: '40px 40px'
+        }} />
+      </div>
 
-      <div className="text-center z-10 relative">
-        {/* Enhanced logo with better effects */}
-        <div className="mb-16 relative">
-          <div className="text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 mb-6 animate-glow">
-            Portfolio
+      <div className="text-center z-10 relative max-w-md mx-auto px-4">
+        {/* Professional logo/brand */}
+        <div className="mb-12 relative">
+          <div className="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 mb-4">
+            BS
           </div>
-          <div className="absolute inset-0 text-7xl font-bold text-purple-400 blur-2xl opacity-30 animate-pulse">
-            Portfolio
+          <div className="text-xl text-gray-300 font-light tracking-wider">
+            Developer
           </div>
-          {/* Additional glow layers */}
-          <div className="absolute inset-0 text-7xl font-bold text-pink-400 blur-3xl opacity-20 animate-pulse" style={{animationDelay: '1s'}}>
-            Portfolio
+          <div className="absolute inset-0 text-5xl md:text-6xl font-bold text-blue-400 blur-2xl opacity-20 animate-pulse">
+            BS
           </div>
         </div>
         
-        {/* Enhanced typewriter text */}
-        <div className="h-10 mb-16">
-          <div className="text-2xl text-gray-200 font-light tracking-wide">
+        {/* Professional typewriter text */}
+        <div className="h-8 mb-12">
+          <div className="text-lg text-gray-200 font-light tracking-wide">
             {currentText}
-            {isTyping && <span className="animate-pulse text-purple-400 ml-1">|</span>}
+            {isTyping && <span className="animate-pulse text-blue-400 ml-1">|</span>}
           </div>
         </div>
         
-        {/* Enhanced progress bar with multiple layers */}
-        <div className="relative w-96 h-4 bg-slate-800/60 rounded-full overflow-hidden border border-purple-500/30 backdrop-blur-sm">
-          <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-full"></div>
+        {/* Clean progress bar */}
+        <div className="relative w-full max-w-sm mx-auto h-2 bg-slate-800/60 rounded-full overflow-hidden border border-blue-500/20 backdrop-blur-sm">
           <div 
-            className="h-full bg-gradient-to-r from-purple-500 via-pink-400 to-cyan-400 transition-all duration-300 ease-out relative rounded-full"
+            className="h-full bg-gradient-to-r from-blue-500 via-purple-400 to-cyan-400 transition-all duration-300 ease-out relative rounded-full"
             style={{ width: `${progress}%` }}
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-pulse rounded-full" />
-            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-purple-300/50 to-pink-300/50 blur-sm rounded-full" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse rounded-full" />
           </div>
         </div>
         
-        <div className="mt-8 text-xl text-purple-200 font-medium tracking-wider">
+        <div className="mt-6 text-lg text-blue-200 font-medium">
           {progress.toFixed(0)}%
         </div>
         
-        {/* Enhanced animated loading dots */}
-        <div className="flex justify-center mt-12 space-x-3">
-          {[0, 1, 2, 3].map((i) => (
+        {/* Professional loading indicator */}
+        <div className="flex justify-center mt-8 space-x-2">
+          {[0, 1, 2].map((i) => (
             <div
               key={i}
-              className="w-4 h-4 rounded-full animate-bounce"
+              className="w-3 h-3 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 animate-bounce"
               style={{ 
-                background: `linear-gradient(45deg, hsl(${240 + i * 20}, 70%, 60%), hsl(${260 + i * 20}, 70%, 70%))`,
-                animationDelay: `${i * 0.2}s`,
-                animationDuration: '1.5s'
+                animationDelay: `${i * 0.3}s`,
+                animationDuration: '1.2s'
               }}
             />
           ))}
-        </div>
-
-        {/* Enhanced rotating rings */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10">
-          <div className="w-[32rem] h-[32rem] border border-purple-400/15 rounded-full animate-spin-slow" />
-          <div className="absolute inset-12 border border-pink-300/20 rounded-full animate-spin-slow-reverse" />
-          <div className="absolute inset-24 border border-cyan-300/25 rounded-full animate-rotate-slow" />
-        </div>
-
-        {/* Orbital elements */}
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -z-10">
-          <div className="w-6 h-6 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full absolute animate-float-horizontal" style={{top: '-12rem', left: '0'}} />
-          <div className="w-4 h-4 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full absolute animate-float-horizontal-reverse" style={{bottom: '-8rem', right: '2rem'}} />
         </div>
       </div>
     </div>
