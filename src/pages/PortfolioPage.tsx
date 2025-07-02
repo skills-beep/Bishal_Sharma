@@ -23,8 +23,34 @@ export default function PortfolioPage() {
     // Add smooth scroll behavior to html element
     document.documentElement.style.scrollBehavior = 'smooth';
     
+    // Enhanced scroll animations with intersection observer
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-fade-in');
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Observe all sections
+    const sections = document.querySelectorAll('section');
+    sections.forEach((section) => {
+      section.style.opacity = '0';
+      section.style.transform = 'translateY(30px)';
+      section.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+      observer.observe(section);
+    });
+
     return () => {
       document.documentElement.style.scrollBehavior = 'auto';
+      observer.disconnect();
     };
   }, []);
 
@@ -33,42 +59,42 @@ export default function PortfolioPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground relative overflow-x-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-foreground relative overflow-x-hidden">
       <AnimatedBackground />
       
       <div className="relative z-10">
         <PortfolioNavbar />
         
-        {/* Enhanced section animations with intersection observer triggers */}
-        <div className="animate-fade-in">
+        {/* Enhanced section animations with improved staggering */}
+        <div className="animate-fade-in opacity-100" style={{ transform: 'translateY(0)' }}>
           <HeroSection />
         </div>
         
-        <div className="animate-slide-in-left" style={{ animationDelay: '200ms' }}>
+        <div className="opacity-0" style={{ animationDelay: '100ms' }}>
           <AboutSection />
         </div>
         
-        <div className="animate-scale-in" style={{ animationDelay: '300ms' }}>
+        <div className="opacity-0" style={{ animationDelay: '200ms' }}>
           <WhyHireMeSection />
         </div>
         
-        <div className="animate-slide-in-right" style={{ animationDelay: '400ms' }}>
+        <div className="opacity-0" style={{ animationDelay: '300ms' }}>
           <SkillsSection />
         </div>
         
-        <div className="animate-fade-in" style={{ animationDelay: '500ms' }}>
+        <div className="opacity-0" style={{ animationDelay: '400ms' }}>
           <ProjectsSection />
         </div>
         
-        <div className="animate-scale-in" style={{ animationDelay: '600ms' }}>
+        <div className="opacity-0" style={{ animationDelay: '500ms' }}>
           <CertificatesSection />
         </div>
         
-        <div className="animate-slide-in-left" style={{ animationDelay: '700ms' }}>
+        <div className="opacity-0" style={{ animationDelay: '600ms' }}>
           <EducationSection />
         </div>
         
-        <div className="animate-fade-in" style={{ animationDelay: '800ms' }}>
+        <div className="opacity-0" style={{ animationDelay: '700ms' }}>
           <ContactSection />
         </div>
       </div>
