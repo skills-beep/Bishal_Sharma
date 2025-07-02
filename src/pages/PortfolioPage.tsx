@@ -33,8 +33,8 @@ export default function PortfolioPage() {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('animate-fade-in');
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
+          (entry.target as HTMLElement).style.opacity = '1';
+          (entry.target as HTMLElement).style.transform = 'translateY(0)';
         }
       });
     }, observerOptions);
@@ -42,9 +42,10 @@ export default function PortfolioPage() {
     // Observe all sections
     const sections = document.querySelectorAll('section');
     sections.forEach((section) => {
-      section.style.opacity = '0';
-      section.style.transform = 'translateY(30px)';
-      section.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+      const htmlSection = section as HTMLElement;
+      htmlSection.style.opacity = '0';
+      htmlSection.style.transform = 'translateY(30px)';
+      htmlSection.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
       observer.observe(section);
     });
 
