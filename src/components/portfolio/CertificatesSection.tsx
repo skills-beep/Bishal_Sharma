@@ -28,6 +28,12 @@ export function CertificatesSection() {
       description: "Advanced Python programming concepts and data structures",
       link: "https://drive.google.com/file/d/1v2x5cvs6gseDRyCpKn_-7wEjcVsyv1T8/view?usp=drive_link",
     },
+    {
+      title: "Linux System Administration Basics",
+      issuer: "Certification Authority",
+      description: "Fundamental Linux system administration skills and command-line operations",
+      link: "https://drive.google.com/file/d/1nQbz1Y4FMPoNQXlNYYluXy72dExOB8jS/view?usp=drive_link",
+    },
   ];
 
   return (
