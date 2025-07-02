@@ -32,9 +32,10 @@ export default function PortfolioPage() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('animate-fade-in');
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
+          const element = entry.target as HTMLElement;
+          element.classList.add('animate-fade-in');
+          element.style.opacity = '1';
+          element.style.transform = 'translateY(0)';
         }
       });
     }, observerOptions);
@@ -42,9 +43,10 @@ export default function PortfolioPage() {
     // Observe all sections
     const sections = document.querySelectorAll('section');
     sections.forEach((section) => {
-      section.style.opacity = '0';
-      section.style.transform = 'translateY(30px)';
-      section.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+      const htmlSection = section as HTMLElement;
+      htmlSection.style.opacity = '0';
+      htmlSection.style.transform = 'translateY(30px)';
+      htmlSection.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
       observer.observe(section);
     });
 
@@ -59,7 +61,7 @@ export default function PortfolioPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-foreground relative overflow-x-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-violet-950 via-purple-900 to-rose-950 text-foreground relative overflow-x-hidden">
       <AnimatedBackground />
       
       <div className="relative z-10">
