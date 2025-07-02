@@ -23,37 +23,41 @@ export default function PortfolioPage() {
     // Add smooth scroll behavior to html element
     document.documentElement.style.scrollBehavior = 'smooth';
     
-    // Enhanced scroll animations with intersection observer
+    // Simple fade-in animation with intersection observer
     const observerOptions = {
       threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+      rootMargin: '0px 0px -100px 0px'
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('animate-fade-in');
-          (entry.target as HTMLElement).style.opacity = '1';
-          (entry.target as HTMLElement).style.transform = 'translateY(0)';
+          const element = entry.target as HTMLElement;
+          element.style.opacity = '1';
+          element.style.transform = 'translateY(0)';
         }
       });
     }, observerOptions);
 
-    // Observe all sections
-    const sections = document.querySelectorAll('section');
-    sections.forEach((section) => {
-      const htmlSection = section as HTMLElement;
-      htmlSection.style.opacity = '0';
-      htmlSection.style.transform = 'translateY(30px)';
-      htmlSection.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-      observer.observe(section);
-    });
+    // Wait for content to load before applying animations
+    setTimeout(() => {
+      const sections = document.querySelectorAll('section[id]');
+      sections.forEach((section) => {
+        const htmlSection = section as HTMLElement;
+        if (section.id !== 'home') { // Don't hide hero section
+          htmlSection.style.opacity = '0';
+          htmlSection.style.transform = 'translateY(50px)';
+          htmlSection.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+          observer.observe(section);
+        }
+      });
+    }, 100);
 
     return () => {
       document.documentElement.style.scrollBehavior = 'auto';
       observer.disconnect();
     };
-  }, []);
+  }, [isLoading]);
 
   if (isLoading) {
     return <LoadingAnimation onComplete={handleLoadingComplete} />;
@@ -66,38 +70,14 @@ export default function PortfolioPage() {
       <div className="relative z-10">
         <PortfolioNavbar />
         
-        {/* Enhanced section animations with improved staggering */}
-        <div className="animate-fade-in opacity-100" style={{ transform: 'translateY(0)' }}>
-          <HeroSection />
-        </div>
-        
-        <div className="opacity-0" style={{ animationDelay: '100ms' }}>
-          <AboutSection />
-        </div>
-        
-        <div className="opacity-0" style={{ animationDelay: '200ms' }}>
-          <WhyHireMeSection />
-        </div>
-        
-        <div className="opacity-0" style={{ animationDelay: '300ms' }}>
-          <SkillsSection />
-        </div>
-        
-        <div className="opacity-0" style={{ animationDelay: '400ms' }}>
-          <ProjectsSection />
-        </div>
-        
-        <div className="opacity-0" style={{ animationDelay: '500ms' }}>
-          <CertificatesSection />
-        </div>
-        
-        <div className="opacity-0" style={{ animationDelay: '600ms' }}>
-          <EducationSection />
-        </div>
-        
-        <div className="opacity-0" style={{ animationDelay: '700ms' }}>
-          <ContactSection />
-        </div>
+        <HeroSection />
+        <AboutSection />
+        <WhyHireMeSection />
+        <SkillsSection />
+        <ProjectsSection />
+        <CertificatesSection />
+        <EducationSection />
+        <ContactSection />
       </div>
     </div>
   );
