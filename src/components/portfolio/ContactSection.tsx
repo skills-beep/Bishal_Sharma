@@ -51,8 +51,8 @@ export function ContactSection() {
     {
       icon: Phone,
       label: "Phone",
-      value: "+975 77849068",
-      link: "tel:+97577849068",
+      value: "+975 17658134",
+      link: "tel:+97517658134",
       color: "text-emerald-400"
     },
     {
@@ -75,13 +75,13 @@ export function ContactSection() {
     {
       icon: Github,
       label: "GitHub",
-      url: "https://github.com/yourusername",
+      url: "https://github.com/skills-beep",
       color: "hover:text-slate-300 hover:bg-slate-800/20"
     },
     {
       icon: Linkedin,
       label: "LinkedIn", 
-      url: "https://linkedin.com/in/yourprofile",
+      url: "https://www.linkedin.com/in/bishal-sharma-12b7211b6/",
       color: "hover:text-blue-300 hover:bg-blue-500/20"
     },
     {
