@@ -8,6 +8,7 @@ import { SkillsSection } from "@/components/portfolio/SkillsSection";
 import { ProjectsSection } from "@/components/portfolio/ProjectsSection";
 import { CertificatesSection } from "@/components/portfolio/CertificatesSection";
 import { EducationSection } from "@/components/portfolio/EducationSection";
+import { GraduationSection } from "@/components/portfolio/GraduationSection";
 import { ContactSection } from "@/components/portfolio/ContactSection";
 import { LoadingAnimation } from "@/components/portfolio/LoadingAnimation";
 import { AnimatedBackground } from "@/components/portfolio/AnimatedBackground";
@@ -77,6 +78,7 @@ export default function PortfolioPage() {
         <ProjectsSection />
         <CertificatesSection />
         <EducationSection />
+        <GraduationSection />
         <ContactSection />
       </div>
     </div>
