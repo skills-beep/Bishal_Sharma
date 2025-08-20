@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { PortfolioNavbar } from "@/components/portfolio/PortfolioNavbar";
 import { HeroSection } from "@/components/portfolio/HeroSection";
 import { AboutSection } from "@/components/portfolio/AboutSection";
+import { WorkExperienceSection } from "@/components/portfolio/WorkExperienceSection";
 import { WhyHireMeSection } from "@/components/portfolio/WhyHireMeSection";
 import { SkillsSection } from "@/components/portfolio/SkillsSection";
 import { ProjectsSection } from "@/components/portfolio/ProjectsSection";
@@ -73,6 +74,7 @@ export default function PortfolioPage() {
         
         <HeroSection />
         <AboutSection />
+        <WorkExperienceSection />
         <WhyHireMeSection />
         <SkillsSection />
         <ProjectsSection />
