@@ -5,6 +5,14 @@ import { ExternalLink, Award, Star } from "lucide-react";
 export function CertificatesSection() {
   const certificates = [
     {
+      title: "Certificate of Academic Excellence",
+      issuer: "Chandigarh University",
+      description: "Awarded for outstanding academic performance and securing top rank in examinations during December 2022 and May 2023",
+      link: "/lovable-uploads/academic-excellence-certificate.png",
+      featured: true,
+      isHighlight: true,
+    },
+    {
       title: "Google AI Essentials",
       issuer: "Google",
       description: "Comprehensive understanding of AI fundamentals and practical applications",
@@ -71,31 +79,57 @@ export function CertificatesSection() {
             >
               {cert.featured && (
                 <div className="absolute -top-3 -right-3 z-20">
-                  <div className="bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full p-2 animate-pulse">
+                  <div className={`rounded-full p-2 animate-pulse ${
+                    cert.isHighlight 
+                      ? 'bg-gradient-to-r from-amber-400 via-yellow-500 to-orange-500 shadow-[0_0_20px_rgba(251,191,36,0.5)]' 
+                      : 'bg-gradient-to-r from-yellow-400 to-orange-500'
+                  }`}>
                     <Star className="h-4 w-4 text-white fill-current" />
                   </div>
                 </div>
               )}
               
               <div className={`bg-card/50 backdrop-blur-sm p-6 rounded-xl border transition-all duration-500 hover:shadow-2xl group-hover:border-purple-400/50 relative overflow-hidden ${
-                cert.featured 
-                  ? 'border-purple-500/30 hover:border-purple-400/70 bg-gradient-to-br from-purple-500/5 to-blue-500/5' 
-                  : 'border-border hover:border-purple-500/30'
+                cert.isHighlight
+                  ? 'border-amber-500/50 hover:border-amber-400/90 bg-gradient-to-br from-amber-500/10 via-yellow-500/5 to-orange-500/10 shadow-[0_0_30px_rgba(251,191,36,0.15)]'
+                  : cert.featured 
+                    ? 'border-purple-500/30 hover:border-purple-400/70 bg-gradient-to-br from-purple-500/5 to-blue-500/5' 
+                    : 'border-border hover:border-purple-500/30'
               }`}>
                 {/* Animated background gradient */}
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-500/0 via-blue-500/0 to-cyan-500/0 group-hover:from-purple-500/5 group-hover:via-blue-500/5 group-hover:to-cyan-500/5 transition-all duration-500"></div>
+                <div className={`absolute inset-0 transition-all duration-500 ${
+                  cert.isHighlight
+                    ? 'bg-gradient-to-r from-amber-500/0 via-yellow-500/0 to-orange-500/0 group-hover:from-amber-500/10 group-hover:via-yellow-500/10 group-hover:to-orange-500/10'
+                    : 'bg-gradient-to-r from-purple-500/0 via-blue-500/0 to-cyan-500/0 group-hover:from-purple-500/5 group-hover:via-blue-500/5 group-hover:to-cyan-500/5'
+                }`}></div>
                 
                 <div className="flex items-start gap-4 relative z-10">
                   <div className="flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                    <div className="p-3 rounded-xl bg-gradient-to-r from-purple-500/20 to-blue-500/20 group-hover:from-purple-500/30 group-hover:to-blue-500/30 transition-all duration-300">
-                      <Award className="h-8 w-8 text-purple-400 group-hover:text-purple-300 transition-colors duration-300" />
+                    <div className={`p-3 rounded-xl transition-all duration-300 ${
+                      cert.isHighlight
+                        ? 'bg-gradient-to-r from-amber-500/30 to-orange-500/30 group-hover:from-amber-500/40 group-hover:to-orange-500/40'
+                        : 'bg-gradient-to-r from-purple-500/20 to-blue-500/20 group-hover:from-purple-500/30 group-hover:to-blue-500/30'
+                    }`}>
+                      <Award className={`h-8 w-8 transition-colors duration-300 ${
+                        cert.isHighlight
+                          ? 'text-amber-400 group-hover:text-amber-300'
+                          : 'text-purple-400 group-hover:text-purple-300'
+                      }`} />
                     </div>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-bold mb-2 text-card-foreground group-hover:text-purple-300 transition-colors duration-300">
+                    <h3 className={`text-xl font-bold mb-2 transition-colors duration-300 ${
+                      cert.isHighlight
+                        ? 'text-card-foreground group-hover:text-amber-300'
+                        : 'text-card-foreground group-hover:text-purple-300'
+                    }`}>
                       {cert.title}
                     </h3>
-                    <p className="text-purple-400 mb-3 font-medium group-hover:text-purple-300 transition-colors duration-300">
+                    <p className={`mb-3 font-medium transition-colors duration-300 ${
+                      cert.isHighlight
+                        ? 'text-amber-400 group-hover:text-amber-300'
+                        : 'text-purple-400 group-hover:text-purple-300'
+                    }`}>
                       {cert.issuer}
                     </p>
                     <p className="text-muted-foreground mb-4 leading-relaxed group-hover:text-muted-foreground/80 transition-colors duration-300">
