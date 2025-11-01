@@ -8,7 +8,7 @@ export function CertificatesSection() {
       title: "Certificate of Academic Excellence",
       issuer: "Chandigarh University",
       description: "Awarded for outstanding academic performance and securing top rank in examinations during December 2022 and May 2023",
-      link: "/lovable-uploads/academic-excellence-certificate.png",
+      link: "https://drive.google.com/file/d/1R-rMCPlw81V3MeMJWtjXgahFchXFfo4W/view?usp=drive_link",
       featured: true,
       isHighlight: true,
     },
