@@ -4,7 +4,7 @@ import { differenceInMonths, differenceInDays, format } from "date-fns";
 
 export function WorkExperienceSection() {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const startDate = new Date(2024, 7, 15); // August 15, 2024
+  const startDate = new Date(2025, 7, 15); // August 15, 2025
   
   useEffect(() => {
     const timer = setInterval(() => {
@@ -60,7 +60,7 @@ export function WorkExperienceSection() {
                 <div className="flex flex-col sm:flex-row items-center gap-4 text-slate-600 dark:text-slate-300">
                   <div className="flex items-center gap-2 hover:text-amber-600 dark:hover:text-amber-400 transition-colors duration-300">
                     <Calendar className="h-4 w-4 text-amber-500" />
-                    <span>August 15, 2024 - Present</span>
+                    <span>August 15, 2025 - Present</span>
                   </div>
                   <div className="flex items-center gap-2 hover:text-amber-600 dark:hover:text-amber-400 transition-colors duration-300">
                     <MapPin className="h-4 w-4 text-amber-500" />
