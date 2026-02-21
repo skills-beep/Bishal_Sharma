@@ -25,7 +25,7 @@ export function WorkExperienceSection() {
         </div>
         
         <div className="max-w-4xl mx-auto">
-          <div className="bg-white/80 dark:bg-slate-800/40 backdrop-blur-xl p-8 sm:p-10 rounded-3xl border border-slate-200/50 dark:border-slate-700/50 shadow-2xl transition-all duration-500">
+          <div className="bg-white/80 dark:bg-slate-800/40 backdrop-blur-xl p-8 sm:p-10 rounded-3xl border border-slate-200/50 dark:border-slate-700/50 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105">
             
             {/* Company Header */}
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 mb-8">
