@@ -25,51 +25,51 @@ export function WorkExperienceSection() {
         </div>
         
         <div className="max-w-4xl mx-auto">
-          <div className="bg-white/80 dark:bg-slate-800/40 backdrop-blur-xl p-8 sm:p-12 rounded-3xl border border-slate-200/50 dark:border-slate-700/50 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105">
+          <div className="bg-white/80 dark:bg-slate-800/40 backdrop-blur-xl p-8 sm:p-10 rounded-3xl border border-slate-200/50 dark:border-slate-700/50 shadow-2xl transition-all duration-500">
             
             {/* Company Header */}
-            <div className="flex flex-col sm:flex-row items-center gap-6 mb-8">
-              <div className="relative">
-                <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-br from-amber-100 to-orange-100 dark:from-amber-900/30 dark:to-orange-900/30 p-4 flex items-center justify-center shadow-lg hover:rotate-12 transition-transform duration-500 animate-bounce">
+            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 mb-8">
+              <div className="relative shrink-0">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br from-amber-100 to-orange-100 dark:from-amber-900/30 dark:to-orange-900/30 p-3 flex items-center justify-center shadow-lg">
                   <img
                     src="/lovable-uploads/0d7c315e-a2fa-48fd-a02d-56ecb130a489.png"
                     alt="Tashi Commercial Corporation"
                     className="w-full h-full object-contain rounded-full"
                   />
                 </div>
-                <div className="absolute -top-2 -right-2 w-6 h-6 bg-slate-400 rounded-full"></div>
+                <div className="absolute -top-1 -right-1 w-5 h-5 bg-slate-400 rounded-full border-2 border-white dark:border-slate-800"></div>
               </div>
               
-              <div className="text-center sm:text-left flex-1">
-                <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-2 hover:text-amber-600 dark:hover:text-amber-400 transition-colors duration-300">
+              <div className="text-center sm:text-left flex-1 min-w-0">
+                <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-1">
                   IT Associate Manager
                 </h3>
-                <p className="text-xl text-amber-600 dark:text-amber-400 font-semibold mb-2 animate-pulse">
+                <p className="text-lg text-amber-600 dark:text-amber-400 font-semibold mb-3">
                   Tashi Commercial Corporation
                 </p>
-                <div className="flex flex-col sm:flex-row items-center gap-4 text-slate-600 dark:text-slate-300">
-                  <div className="flex items-center gap-2 hover:text-amber-600 dark:hover:text-amber-400 transition-colors duration-300">
-                    <Calendar className="h-4 w-4 text-amber-500" />
-                    <span>August 15, 2025 - February 7, 2026</span>
+                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-2 sm:gap-4 text-sm text-slate-600 dark:text-slate-300">
+                  <div className="flex items-center gap-1.5">
+                    <Calendar className="h-4 w-4 text-amber-500 shrink-0" />
+                    <span>Aug 2025 – Feb 2026</span>
                   </div>
-                  <div className="flex items-center gap-2 hover:text-amber-600 dark:hover:text-amber-400 transition-colors duration-300">
-                    <MapPin className="h-4 w-4 text-amber-500" />
+                  <div className="flex items-center gap-1.5">
+                    <MapPin className="h-4 w-4 text-amber-500 shrink-0" />
                     <span>Bhutan</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Work Duration */}
-            <div className="mb-8 bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-red-500/10 dark:from-amber-500/20 dark:via-orange-500/20 dark:to-red-500/20 rounded-2xl p-6 border border-amber-500/30 dark:border-amber-400/30 shadow-lg hover:shadow-amber-500/20 transition-all duration-500">
-              <div className="flex items-center justify-center gap-4">
-                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center shadow-lg animate-bounce">
-                  <Award className="h-7 w-7 text-white" />
+            {/* Work Duration Badge */}
+            <div className="mb-8 bg-gradient-to-r from-amber-500/10 to-orange-500/10 dark:from-amber-500/20 dark:to-orange-500/20 rounded-xl p-5 border border-amber-500/20 dark:border-amber-400/20">
+              <div className="flex items-center gap-4 justify-center">
+                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center shadow-md shrink-0">
+                  <Award className="h-6 w-6 text-white" />
                 </div>
-                <div className="text-center sm:text-left">
-                  <p className="text-sm font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Total Experience</p>
-                  <p className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">
-                    {totalMonths} Months{remainingDays > 0 ? `, ${remainingDays} Days` : ""}
+                <div>
+                  <p className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Total Experience</p>
+                  <p className="text-xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">
+                    {totalMonths} Months{remainingDays > 0 ? ` & ${remainingDays} Days` : ""}
                   </p>
                 </div>
               </div>
