@@ -1,21 +1,12 @@
-import { Building2, Calendar, MapPin, Award, Code, Database, Clock } from "lucide-react";
-import { useState, useEffect } from "react";
-import { differenceInMonths, differenceInDays, format } from "date-fns";
+import { Building2, Calendar, MapPin, Award, Code, Database } from "lucide-react";
+import { differenceInMonths, differenceInDays } from "date-fns";
 
 export function WorkExperienceSection() {
-  const [currentDate, setCurrentDate] = useState(new Date());
   const startDate = new Date(2025, 7, 15); // August 15, 2025
+  const endDate = new Date(2026, 1, 7); // February 7, 2026
   
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentDate(new Date());
-    }, 1000 * 60 * 60); // Update every hour
-    
-    return () => clearInterval(timer);
-  }, []);
-  
-  const totalMonths = differenceInMonths(currentDate, startDate);
-  const remainingDays = differenceInDays(currentDate, startDate) % 30;
+  const totalMonths = differenceInMonths(endDate, startDate);
+  const remainingDays = differenceInDays(endDate, startDate) % 30;
   
   return (
     <section id="experience" className="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 relative overflow-hidden">
@@ -46,8 +37,7 @@ export function WorkExperienceSection() {
                     className="w-full h-full object-contain rounded-full"
                   />
                 </div>
-                <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full animate-ping"></div>
-                <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full"></div>
+                <div className="absolute -top-2 -right-2 w-6 h-6 bg-slate-400 rounded-full"></div>
               </div>
               
               <div className="text-center sm:text-left flex-1">
@@ -60,7 +50,7 @@ export function WorkExperienceSection() {
                 <div className="flex flex-col sm:flex-row items-center gap-4 text-slate-600 dark:text-slate-300">
                   <div className="flex items-center gap-2 hover:text-amber-600 dark:hover:text-amber-400 transition-colors duration-300">
                     <Calendar className="h-4 w-4 text-amber-500" />
-                    <span>August 15, 2025 - Present</span>
+                    <span>August 15, 2025 - February 7, 2026</span>
                   </div>
                   <div className="flex items-center gap-2 hover:text-amber-600 dark:hover:text-amber-400 transition-colors duration-300">
                     <MapPin className="h-4 w-4 text-amber-500" />
@@ -70,33 +60,17 @@ export function WorkExperienceSection() {
               </div>
             </div>
 
-            {/* Dynamic Date & Duration Counter */}
-            <div className="mb-8 bg-gradient-to-r from-emerald-500/10 via-teal-500/10 to-cyan-500/10 dark:from-emerald-500/20 dark:via-teal-500/20 dark:to-cyan-500/20 rounded-2xl p-6 border border-emerald-500/30 dark:border-emerald-400/30 shadow-lg hover:shadow-emerald-500/20 transition-all duration-500">
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-                {/* Today's Date */}
-                <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-lg animate-pulse">
-                    <Clock className="h-7 w-7 text-white" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Today's Date</p>
-                    <p className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent">
-                      {format(currentDate, "EEEE, MMMM d, yyyy")}
-                    </p>
-                  </div>
+            {/* Work Duration */}
+            <div className="mb-8 bg-gradient-to-r from-amber-500/10 via-orange-500/10 to-red-500/10 dark:from-amber-500/20 dark:via-orange-500/20 dark:to-red-500/20 rounded-2xl p-6 border border-amber-500/30 dark:border-amber-400/30 shadow-lg hover:shadow-amber-500/20 transition-all duration-500">
+              <div className="flex items-center justify-center gap-4">
+                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center shadow-lg animate-bounce">
+                  <Award className="h-7 w-7 text-white" />
                 </div>
-                
-                {/* Work Duration */}
-                <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center shadow-lg animate-bounce">
-                    <Award className="h-7 w-7 text-white" />
-                  </div>
-                  <div className="text-center sm:text-left">
-                    <p className="text-sm font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Total Experience</p>
-                    <p className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">
-                      {totalMonths} Months{remainingDays > 0 ? `, ${remainingDays} Days` : ""}
-                    </p>
-                  </div>
+                <div className="text-center sm:text-left">
+                  <p className="text-sm font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Total Experience</p>
+                  <p className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">
+                    {totalMonths} Months{remainingDays > 0 ? `, ${remainingDays} Days` : ""}
+                  </p>
                 </div>
               </div>
             </div>
@@ -106,10 +80,10 @@ export function WorkExperienceSection() {
               <div className="border-l-4 border-amber-500 pl-6 hover:border-l-8 transition-all duration-300">
                 <h4 className="text-lg font-semibold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
                   <Award className="h-5 w-5 text-amber-500 animate-spin" />
-                  Current Role & Responsibilities
+                  Role & Responsibilities
                 </h4>
                 <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-                  As an IT Associate Manager at Tashi Commercial Corporation, I'm responsible for 
+                  As an IT Associate Manager at Tashi Commercial Corporation, I was responsible for 
                   overseeing IT operations, managing digital infrastructure, and implementing 
                   technology solutions that drive business efficiency and growth. I play a key role 
                   in SAP software development and system optimization.
@@ -122,7 +96,7 @@ export function WorkExperienceSection() {
                   SAP Development & Implementation
                 </h4>
                 <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">
-                  I actively contribute to the development and enhancement of SAP software solutions, 
+                  I actively contributed to the development and enhancement of SAP software solutions, 
                   ensuring seamless integration with existing business processes. My role involves 
                   customizing SAP modules, optimizing workflows, and providing technical support 
                   for enterprise resource planning initiatives.
