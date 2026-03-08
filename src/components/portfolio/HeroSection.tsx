@@ -106,14 +106,7 @@ export function HeroSection() {
             </div>
           </motion.div>
 
-          {/* Quick stats cards */}
-          <motion.div
-            variants={itemVariants}
-            className="lg:col-span-3 bg-gradient-to-br from-emerald-500/10 to-neutral-950/60 backdrop-blur-xl rounded-3xl p-6 border border-emerald-500/20 hover:border-emerald-500/30 transition-all duration-700 flex flex-col justify-center items-center text-center"
-          >
-            <span className="text-3xl font-black text-emerald-400">3+</span>
-            <span className="text-xs text-neutral-400 mt-1 tracking-wider uppercase">Years Exp</span>
-          </motion.div>
+          {/* Location & Role cards */}
 
           <motion.div
             variants={itemVariants}
