@@ -22,10 +22,8 @@ export default function PortfolioPage() {
   };
 
   useEffect(() => {
-    // Add smooth scroll behavior to html element
     document.documentElement.style.scrollBehavior = 'smooth';
     
-    // Simple fade-in animation with intersection observer
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -100px 0px'
@@ -41,12 +39,11 @@ export default function PortfolioPage() {
       });
     }, observerOptions);
 
-    // Wait for content to load before applying animations
     setTimeout(() => {
       const sections = document.querySelectorAll('section[id]');
       sections.forEach((section) => {
         const htmlSection = section as HTMLElement;
-        if (section.id !== 'home') { // Don't hide hero section
+        if (section.id !== 'home') {
           htmlSection.style.opacity = '0';
           htmlSection.style.transform = 'translateY(50px)';
           htmlSection.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
@@ -66,7 +63,7 @@ export default function PortfolioPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-foreground relative overflow-x-hidden">
+    <div className="min-h-screen bg-black text-white relative overflow-x-hidden">
       <AnimatedBackground />
       
       <div className="relative z-10">

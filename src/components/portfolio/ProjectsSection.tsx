@@ -3,28 +3,28 @@ export function ProjectsSection() {
   const projects = [
     {
       title: "Druk Scholars Guide",
-      description: "An educational web platform built for Bhutanese students to explore scholarships, resources, and career tips. Features responsive UI, light/dark mode, and fast performance.",
+      description: "An educational web platform built for Bhutanese students to explore scholarships, resources, and career tips.",
       tech: ["TypeScript", "Vite", "TailwindCSS"],
       link: "https://druk-scholars-guide.vercel.app",
       githubLink: "https://github.com/skills-beep/druk-scholars-guide"
     },
     {
       title: "Pulse Robot",
-      description: "A fast, responsive web app template built with modern technologies. Offers clean design, modular components, and easy customization for modern web projects.",
+      description: "A fast, responsive web app template built with modern technologies. Clean design and modular components.",
       tech: ["Vite", "TailwindCSS", "TypeScript"],
       link: "https://p-794466.vercel.app",
       githubLink: "https://github.com/skills-beep/Pulse_Robot"
     },
     {
       title: "Druk Textiles",
-      description: "A modern web app for smart textile technology featuring modular UI with shadcn/ui for wearable data integration and rapid development.",
+      description: "A modern web app for smart textile technology featuring modular UI with shadcn/ui for wearable data.",
       tech: ["React", "TypeScript", "TailwindCSS", "Vite"],
       link: "https://druk-textiles.vercel.app",
       githubLink: "https://github.com/skills-beep/Druk-Textiles"
     },
     {
       title: "Midnight Chess Mastery",
-      description: "A sleek, AI-powered web app where you play chess against friends or AI opponents, featuring modern UI, theme customization, responsive design, and smooth animations.",
+      description: "AI-powered web app for playing chess against friends or AI with modern UI and smooth animations.",
       tech: ["React", "TypeScript", "Vite", "AI Integration"],
       link: "https://midnight-chess-mastery.vercel.app",
       githubLink: "https://github.com/skills-beep/midnight-chess-mastery"
@@ -32,23 +32,32 @@ export function ProjectsSection() {
   ];
 
   return (
-    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-12 text-foreground">Projects</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-black relative overflow-hidden">
+      <div className="absolute inset-0 opacity-[0.03]">
+        <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-white rounded-full blur-[150px]"></div>
+      </div>
+
+      <div className="max-w-6xl mx-auto relative z-10">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl sm:text-5xl font-black mb-4 text-white tracking-tight">Projects</h2>
+          <div className="w-24 h-[2px] bg-white/20 mx-auto"></div>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {projects.map((project, index) => (
             <div
               key={index}
-              className="bg-card/50 backdrop-blur-sm p-6 rounded-lg border border-border hover:border-purple-500 transition-all duration-300 hover:scale-105 hover:shadow-lg group"
+              className="group bg-white/[0.03] backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:border-white/25 transition-all duration-500 hover:scale-105 hover:bg-white/[0.06]"
+              style={{ animationDelay: `${index * 100}ms` }}
             >
-              <h3 className="text-xl font-bold mb-3 text-card-foreground">{project.title}</h3>
-              <p className="text-muted-foreground mb-4 leading-relaxed">{project.description}</p>
+              <h3 className="text-xl font-bold mb-3 text-white group-hover:text-white transition-colors">{project.title}</h3>
+              <p className="text-white/40 mb-4 leading-relaxed group-hover:text-white/60 transition-colors">{project.description}</p>
               
               <div className="flex flex-wrap gap-2 mb-4">
                 {project.tech.map((tech) => (
                   <span
                     key={tech}
-                    className="px-3 py-1 bg-purple-600/20 text-purple-400 rounded-full text-sm border border-purple-500/30"
+                    className="px-3 py-1 bg-white/5 text-white/60 rounded-full text-sm border border-white/10 group-hover:border-white/20 transition-colors"
                   >
                     {tech}
                   </span>
@@ -60,7 +69,7 @@ export function ProjectsSection() {
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-md transition-colors text-sm font-medium"
+                  className="inline-flex items-center px-4 py-2 bg-white text-black rounded-lg transition-all duration-300 text-sm font-medium hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.1)]"
                 >
                   Live Demo
                   <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -71,7 +80,7 @@ export function ProjectsSection() {
                   href={project.githubLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center px-4 py-2 border border-gray-600 text-gray-300 hover:bg-gray-800 rounded-md transition-colors text-sm font-medium"
+                  className="inline-flex items-center px-4 py-2 border border-white/20 text-white/60 hover:text-white hover:border-white/40 hover:bg-white/5 rounded-lg transition-all duration-300 text-sm font-medium"
                 >
                   GitHub
                   <svg className="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 24 24">
