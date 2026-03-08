@@ -24,7 +24,7 @@ export function ContactSection() {
 
   const contactInfo = [
     { icon: Mail, label: "Email", value: "bishalsharma153@gmail.com", link: "mailto:bishalsharma153@gmail.com" },
-    { icon: Phone, label: "Phone", value: "+975 17658134", link: "tel:+97517658134" },
+    { icon: Phone, label: "Phone", value: "+975 77905211", link: "tel:+97577905211" },
     { icon: MapPin, label: "Location", value: "Thimphu, Bhutan", link: "#" },
     { icon: Clock, label: "Status", value: "Available for opportunities", link: "#" }
   ];
