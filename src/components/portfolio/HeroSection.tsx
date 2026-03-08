@@ -110,9 +110,10 @@ export function HeroSection() {
 
           <motion.div
             variants={itemVariants}
-            className="lg:col-span-2 bg-gradient-to-br from-neutral-900/60 to-neutral-950/40 backdrop-blur-xl rounded-3xl p-6 border border-neutral-800/50 hover:border-neutral-700/50 transition-all duration-700 flex flex-col justify-center items-center text-center"
+            className="lg:col-span-3 bg-gradient-to-br from-neutral-900/60 to-neutral-950/40 backdrop-blur-xl rounded-3xl p-6 border border-neutral-800/50 hover:border-neutral-700/50 transition-all duration-700 flex flex-col justify-center items-center text-center group"
+            whileHover={{ scale: 1.05, y: -4 }}
           >
-            <MapPin className="h-5 w-5 text-neutral-500 mb-2" />
+            <MapPin className="h-5 w-5 text-emerald-400/70 mb-2 group-hover:text-emerald-400 transition-colors" />
             <span className="text-xs text-neutral-400 tracking-wider">Bhutan</span>
           </motion.div>
 
