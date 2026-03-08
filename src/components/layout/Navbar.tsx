@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { ShoppingCart, User, Search, Menu } from "lucide-react";
 import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { ThemeToggle } from "@/components/ui/theme-toggle"; // Added import
+
 
 export function Navbar() {
   const { user, logout } = useAuth();
@@ -47,7 +47,6 @@ export function Navbar() {
         </div>
         
         <div className="flex items-center gap-2">
-          <ThemeToggle /> {/* Added ThemeToggle here */}
           
           <div className="hidden md:flex items-center gap-2">
             <Link to="/categories" className="text-sm font-medium">

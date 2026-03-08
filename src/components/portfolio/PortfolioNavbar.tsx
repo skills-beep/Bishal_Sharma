@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
+
 import { motion } from "framer-motion";
 
 export function PortfolioNavbar() {
@@ -73,7 +73,6 @@ export function PortfolioNavbar() {
           </div>
 
           <div className="flex items-center gap-2">
-            <div className="hidden lg:block"><ThemeToggle /></div>
             <div className="lg:hidden">
               <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-neutral-400 hover:text-white hover:bg-white/5">
                 {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -99,7 +98,7 @@ export function PortfolioNavbar() {
                   {item.name}
                 </button>
               ))}
-              <div className="px-3 py-2"><ThemeToggle /></div>
+              
             </div>
           </motion.div>
         )}

@@ -1,9 +1,5 @@
 
-import { useTheme } from "@/contexts/ThemeContext";
-
 export function AnimatedBackground() {
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
 
   return (
     <div className="fixed inset-0 z-0 overflow-hidden">

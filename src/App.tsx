@@ -15,7 +15,7 @@ import AdminDashboardPage from "./pages/AdminPages";
 import NotFound from "./pages/NotFound";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { CartProvider } from "@/contexts/CartContext";
-import { ThemeProvider } from "@/contexts/ThemeContext";
+
 import DrukAirPage from "./pages/DrukAirPage";
 
 const queryClient = new QueryClient();
@@ -23,8 +23,7 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <ThemeProvider>
-        <AuthProvider>
+      <AuthProvider>
           <CartProvider>
             <Toaster />
             <Sonner />
@@ -65,7 +64,6 @@ const App = () => (
             </BrowserRouter>
           </CartProvider>
         </AuthProvider>
-      </ThemeProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
