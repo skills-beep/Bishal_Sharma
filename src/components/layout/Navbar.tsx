@@ -47,7 +47,6 @@ export function Navbar() {
         </div>
         
         <div className="flex items-center gap-2">
-          <ThemeToggle /> {/* Added ThemeToggle here */}
           
           <div className="hidden md:flex items-center gap-2">
             <Link to="/categories" className="text-sm font-medium">

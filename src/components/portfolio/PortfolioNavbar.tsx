@@ -98,7 +98,7 @@ export function PortfolioNavbar() {
                   {item.name}
                 </button>
               ))}
-              <div className="px-3 py-2"><ThemeToggle /></div>
+              
             </div>
           </motion.div>
         )}
