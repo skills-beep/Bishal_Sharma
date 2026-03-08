@@ -106,29 +106,24 @@ export function HeroSection() {
             </div>
           </motion.div>
 
-          {/* Quick stats cards */}
-          <motion.div
-            variants={itemVariants}
-            className="lg:col-span-3 bg-gradient-to-br from-emerald-500/10 to-neutral-950/60 backdrop-blur-xl rounded-3xl p-6 border border-emerald-500/20 hover:border-emerald-500/30 transition-all duration-700 flex flex-col justify-center items-center text-center"
-          >
-            <span className="text-3xl font-black text-emerald-400">3+</span>
-            <span className="text-xs text-neutral-400 mt-1 tracking-wider uppercase">Years Exp</span>
-          </motion.div>
+          {/* Location & Role cards */}
 
           <motion.div
             variants={itemVariants}
-            className="lg:col-span-2 bg-gradient-to-br from-neutral-900/60 to-neutral-950/40 backdrop-blur-xl rounded-3xl p-6 border border-neutral-800/50 hover:border-neutral-700/50 transition-all duration-700 flex flex-col justify-center items-center text-center"
+            className="lg:col-span-3 bg-gradient-to-br from-neutral-900/60 to-neutral-950/40 backdrop-blur-xl rounded-3xl p-6 border border-neutral-800/50 hover:border-neutral-700/50 transition-all duration-700 flex flex-col justify-center items-center text-center group"
+            whileHover={{ scale: 1.05, y: -4 }}
           >
-            <MapPin className="h-5 w-5 text-neutral-500 mb-2" />
+            <MapPin className="h-5 w-5 text-emerald-400/70 mb-2 group-hover:text-emerald-400 transition-colors" />
             <span className="text-xs text-neutral-400 tracking-wider">Bhutan</span>
           </motion.div>
 
           <motion.div
             variants={itemVariants}
-            className="lg:col-span-2 bg-gradient-to-br from-neutral-900/60 to-neutral-950/40 backdrop-blur-xl rounded-3xl p-6 border border-neutral-800/50 hover:border-neutral-700/50 transition-all duration-700 flex flex-col justify-center items-center text-center"
+            className="lg:col-span-4 bg-gradient-to-br from-neutral-900/60 to-neutral-950/40 backdrop-blur-xl rounded-3xl p-6 border border-neutral-800/50 hover:border-neutral-700/50 transition-all duration-700 flex flex-col justify-center items-center text-center group"
+            whileHover={{ scale: 1.05, y: -4 }}
           >
-            <Briefcase className="h-5 w-5 text-neutral-500 mb-2" />
-            <span className="text-xs text-neutral-400 tracking-wider">IT Manager</span>
+            <Briefcase className="h-5 w-5 text-cyan-400/70 mb-2 group-hover:text-cyan-400 transition-colors" />
+            <span className="text-xs text-neutral-400 tracking-wider">IT Associate Manager</span>
           </motion.div>
         </div>
 
