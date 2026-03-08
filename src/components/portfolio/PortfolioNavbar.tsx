@@ -73,7 +73,6 @@ export function PortfolioNavbar() {
           </div>
 
           <div className="flex items-center gap-2">
-            <div className="hidden lg:block"><ThemeToggle /></div>
             <div className="lg:hidden">
               <Button variant="ghost" size="icon" onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-neutral-400 hover:text-white hover:bg-white/5">
                 {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
