@@ -125,8 +125,6 @@ export function HeroSection() {
             <Briefcase className="h-5 w-5 text-cyan-400/70 mb-2 group-hover:text-cyan-400 transition-colors" />
             <span className="text-xs text-neutral-400 tracking-wider">IT Associate Manager</span>
           </motion.div>
-            <span className="text-xs text-neutral-400 tracking-wider">IT Manager</span>
-          </motion.div>
         </div>
 
         {/* Scroll indicator */}
