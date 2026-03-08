@@ -1,149 +1,134 @@
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 export function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
-  const [progress, setProgress] = useState(0);
-  const [currentText, setCurrentText] = useState("");
-  const [isTyping, setIsTyping] = useState(true);
-
-  const texts = [
-    "Preparing workspace...",
-    "Loading professional profile...",
-    "Showcasing innovative projects...",
-    "Welcome to my digital space..."
-  ];
+  const [phase, setPhase] = useState<'initial' | 'name' | 'title' | 'reveal' | 'done'>('initial');
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    let textIndex = 0;
-    let charIndex = 0;
+    const timers: NodeJS.Timeout[] = [];
     
-    const typeWriter = () => {
-      if (textIndex < texts.length) {
-        if (charIndex < texts[textIndex].length) {
-          setCurrentText(texts[textIndex].substring(0, charIndex + 1));
-          charIndex++;
-          setTimeout(typeWriter, 80);
-        } else {
-          setTimeout(() => {
-            textIndex++;
-            charIndex = 0;
-            if (textIndex < texts.length) {
-              setCurrentText("");
-              setTimeout(typeWriter, 300);
-            } else {
-              setIsTyping(false);
-            }
-          }, 1000);
-        }
-      }
-    };
+    // Phase 1: Show first name letters animate in
+    timers.push(setTimeout(() => setPhase('name'), 400));
+    // Phase 2: Show title
+    timers.push(setTimeout(() => setPhase('title'), 1800));
+    // Phase 3: Reveal animation
+    timers.push(setTimeout(() => setPhase('reveal'), 3200));
+    // Phase 4: Complete
+    timers.push(setTimeout(() => {
+      setPhase('done');
+      onComplete();
+    }, 4200));
 
-    typeWriter();
-
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          setTimeout(onComplete, 800);
-          return 100;
-        }
-        return prev + 1.5;
-      });
-    }, 60);
-
-    return () => clearInterval(interval);
+    return () => timers.forEach(clearTimeout);
   }, [onComplete]);
 
+  const nameLetters = "BISHAL".split("");
+  const surnameLetters = "SHARMA".split("");
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 overflow-hidden">
-      {/* Professional particle system */}
-      <div className="absolute inset-0">
-        {Array.from({ length: 50 }).map((_, i) => (
-          <div
-            key={i}
-            className="absolute rounded-full animate-twinkle"
-            style={{
-              width: `${Math.random() * 3 + 1}px`,
-              height: `${Math.random() * 3 + 1}px`,
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              backgroundColor: `hsl(${220 + Math.random() * 40}, 60%, ${50 + Math.random() * 30}%)`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 3}s`,
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Professional geometric elements */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-20 left-20 w-16 h-16 border border-blue-400/40 rotate-45 animate-spin-slow" />
-        <div className="absolute top-32 right-32 w-12 h-12 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full animate-bounce-slow" />
-        <div className="absolute bottom-40 left-1/4 w-10 h-10 border border-cyan-300/30 animate-pulse-slow" />
-        <div className="absolute bottom-20 right-20 w-20 h-20 border border-purple-500/30 rounded-full animate-float" />
-      </div>
-
-      {/* Clean professional grid background */}
-      <div className="absolute inset-0 opacity-10">
+    <div 
+      ref={containerRef}
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-black overflow-hidden transition-opacity duration-700 ${phase === 'done' ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+    >
+      {/* Subtle grid */}
+      <div className="absolute inset-0 opacity-[0.03]">
         <div className="w-full h-full" style={{
-          backgroundImage: `
-            linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px)
-          `,
-          backgroundSize: '40px 40px'
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+          backgroundSize: '60px 60px'
         }} />
       </div>
 
-      <div className="text-center z-10 relative max-w-md mx-auto px-4">
-        {/* Professional logo/brand */}
-        <div className="mb-12 relative">
-          <div className="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 mb-4">
-            BS
-          </div>
-          <div className="text-xl text-gray-300 font-light tracking-wider">
-            Developer
-          </div>
-          <div className="absolute inset-0 text-5xl md:text-6xl font-bold text-blue-400 blur-2xl opacity-20 animate-pulse">
-            BS
+      {/* Horizontal line animation */}
+      <div className={`absolute left-0 right-0 top-1/2 h-[1px] bg-white/20 transition-all duration-1000 ${phase === 'initial' ? 'scale-x-0' : 'scale-x-100'}`} />
+      
+      {/* Vertical line */}
+      <div className={`absolute top-0 bottom-0 left-1/2 w-[1px] bg-white/10 transition-all duration-1000 delay-200 ${phase === 'initial' ? 'scale-y-0' : 'scale-y-100'}`} />
+
+      <div className="text-center z-10 relative">
+        {/* First name */}
+        <div className="overflow-hidden mb-2">
+          <div className={`flex justify-center gap-[2px] sm:gap-1 transition-all duration-700 ${phase === 'initial' ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100'}`}>
+            {nameLetters.map((letter, i) => (
+              <span
+                key={`first-${i}`}
+                className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter inline-block"
+                style={{
+                  transitionDelay: `${i * 80 + 200}ms`,
+                  opacity: phase === 'initial' ? 0 : 1,
+                  transform: phase === 'initial' ? 'translateY(100%) rotateX(90deg)' : 'translateY(0) rotateX(0)',
+                  transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+                }}
+              >
+                {letter}
+              </span>
+            ))}
           </div>
         </div>
-        
-        {/* Professional typewriter text */}
-        <div className="h-8 mb-12">
-          <div className="text-lg text-gray-200 font-light tracking-wide">
-            {currentText}
-            {isTyping && <span className="animate-pulse text-blue-400 ml-1">|</span>}
+
+        {/* Last name */}
+        <div className="overflow-hidden mb-6">
+          <div className={`flex justify-center gap-[2px] sm:gap-1 transition-all duration-700 ${phase === 'initial' ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100'}`}>
+            {surnameLetters.map((letter, i) => (
+              <span
+                key={`last-${i}`}
+                className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black text-transparent tracking-tighter inline-block"
+                style={{
+                  WebkitTextStroke: '1.5px rgba(255,255,255,0.7)',
+                  transitionDelay: `${i * 80 + 600}ms`,
+                  opacity: phase === 'initial' ? 0 : 1,
+                  transform: phase === 'initial' ? 'translateY(100%) rotateX(90deg)' : 'translateY(0) rotateX(0)',
+                  transition: 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+                }}
+              >
+                {letter}
+              </span>
+            ))}
           </div>
         </div>
-        
-        {/* Clean progress bar */}
-        <div className="relative w-full max-w-sm mx-auto h-2 bg-slate-800/60 rounded-full overflow-hidden border border-blue-500/20 backdrop-blur-sm">
-          <div 
-            className="h-full bg-gradient-to-r from-blue-500 via-purple-400 to-cyan-400 transition-all duration-300 ease-out relative rounded-full"
-            style={{ width: `${progress}%` }}
+
+        {/* Title line */}
+        <div className="overflow-hidden">
+          <p
+            className="text-sm sm:text-base md:text-lg tracking-[0.3em] uppercase text-white/50 font-light"
+            style={{
+              opacity: phase === 'title' || phase === 'reveal' ? 1 : 0,
+              transform: phase === 'title' || phase === 'reveal' ? 'translateY(0)' : 'translateY(30px)',
+              transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
+            }}
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse rounded-full" />
-          </div>
+            Frontend Developer & UI/UX Enthusiast
+          </p>
         </div>
-        
-        <div className="mt-6 text-lg text-blue-200 font-medium">
-          {progress.toFixed(0)}%
-        </div>
-        
-        {/* Professional loading indicator */}
-        <div className="flex justify-center mt-8 space-x-2">
-          {[0, 1, 2].map((i) => (
-            <div
-              key={i}
-              className="w-3 h-3 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 animate-bounce"
-              style={{ 
-                animationDelay: `${i * 0.3}s`,
-                animationDuration: '1.2s'
+
+        {/* Minimal loading bar */}
+        <div className="mt-12 w-48 sm:w-64 mx-auto">
+          <div className="h-[1px] bg-white/10 relative overflow-hidden">
+            <div 
+              className="h-full bg-white absolute left-0 top-0"
+              style={{
+                width: phase === 'initial' ? '0%' : phase === 'name' ? '30%' : phase === 'title' ? '70%' : '100%',
+                transition: 'width 1.5s cubic-bezier(0.16, 1, 0.3, 1)',
               }}
             />
-          ))}
+          </div>
         </div>
       </div>
+
+      {/* Corner accents */}
+      <div className={`absolute top-8 left-8 w-12 h-12 border-l border-t border-white/20 transition-all duration-1000 ${phase === 'initial' ? 'opacity-0 scale-0' : 'opacity-100 scale-100'}`} />
+      <div className={`absolute top-8 right-8 w-12 h-12 border-r border-t border-white/20 transition-all duration-1000 delay-100 ${phase === 'initial' ? 'opacity-0 scale-0' : 'opacity-100 scale-100'}`} />
+      <div className={`absolute bottom-8 left-8 w-12 h-12 border-l border-b border-white/20 transition-all duration-1000 delay-200 ${phase === 'initial' ? 'opacity-0 scale-0' : 'opacity-100 scale-100'}`} />
+      <div className={`absolute bottom-8 right-8 w-12 h-12 border-r border-b border-white/20 transition-all duration-1000 delay-300 ${phase === 'initial' ? 'opacity-0 scale-0' : 'opacity-100 scale-100'}`} />
+
+      {/* Wipe reveal overlay */}
+      <div 
+        className="absolute inset-0 bg-white z-20"
+        style={{
+          transform: phase === 'reveal' ? 'translateY(0)' : 'translateY(100%)',
+          transition: 'transform 0.8s cubic-bezier(0.76, 0, 0.24, 1)',
+        }}
+      />
     </div>
   );
 }
