@@ -23,38 +23,8 @@ export default function PortfolioPage() {
 
   useEffect(() => {
     document.documentElement.style.scrollBehavior = 'smooth';
-    
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -100px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const element = entry.target as HTMLElement;
-          element.style.opacity = '1';
-          element.style.transform = 'translateY(0)';
-        }
-      });
-    }, observerOptions);
-
-    setTimeout(() => {
-      const sections = document.querySelectorAll('section[id]');
-      sections.forEach((section) => {
-        const htmlSection = section as HTMLElement;
-        if (section.id !== 'home') {
-          htmlSection.style.opacity = '0';
-          htmlSection.style.transform = 'translateY(50px)';
-          htmlSection.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-          observer.observe(section);
-        }
-      });
-    }, 100);
-
     return () => {
       document.documentElement.style.scrollBehavior = 'auto';
-      observer.disconnect();
     };
   }, [isLoading]);
 
@@ -63,7 +33,7 @@ export default function PortfolioPage() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white relative overflow-x-hidden">
+    <div className="min-h-screen bg-[#0a0a0a] text-white relative overflow-x-hidden">
       <AnimatedBackground />
       
       <div className="relative z-10">
