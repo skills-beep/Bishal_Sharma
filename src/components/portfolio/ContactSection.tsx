@@ -1,6 +1,5 @@
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -10,7 +9,7 @@ import { motion } from "framer-motion";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 export function ContactSection() {
-  const { ref, isInView } = useScrollAnimation(0.1);
+  const { ref, isInView } = useScrollAnimation(0.05);
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -36,163 +35,141 @@ export function ContactSection() {
     { icon: Globe, label: "Portfolio", url: "#" }
   ];
 
-  return (
-    <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-neutral-800 to-transparent" />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-[#0f0f0f] to-[#0a0a0a]" />
+  const containerVariants = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.1 } }
+  };
 
-      <div ref={ref} className="max-w-7xl mx-auto relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-16"
-        >
-          <span className="text-xs tracking-[0.3em] uppercase text-neutral-500 mb-4 block">Connect</span>
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30, filter: "blur(6px)" },
+    visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] } }
+  };
+
+  return (
+    <section id="contact" className="py-28 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Ambient glow */}
+      <div className="absolute top-1/3 right-0 w-[500px] h-[400px] bg-emerald-500/[0.02] rounded-full blur-[120px] pointer-events-none" />
+
+      <motion.div
+        ref={ref}
+        variants={containerVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        className="max-w-6xl mx-auto relative z-10"
+      >
+        {/* Header */}
+        <motion.div variants={itemVariants} className="text-center mb-20">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-neutral-800/60 bg-neutral-900/40 backdrop-blur-sm mb-6">
+            <Mail className="w-4 h-4 text-emerald-400/70" />
+            <span className="text-[11px] tracking-[0.25em] uppercase text-neutral-500 font-medium">Connect</span>
+          </div>
           <h2 className="text-4xl sm:text-5xl font-black text-white tracking-tight">Get In Touch</h2>
-          <div className="w-16 h-[2px] bg-gradient-to-r from-neutral-600 to-neutral-400 mx-auto mt-6" />
+          <p className="text-neutral-500 text-sm mt-4 max-w-md mx-auto">Have a project in mind or want to collaborate? I'd love to hear from you.</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-1 space-y-5"
-          >
-            <Card className="bg-gradient-to-b from-neutral-900/70 to-neutral-950/40 backdrop-blur-xl border-neutral-800/50 hover:border-neutral-700/50 transition-all duration-500 group">
-              <CardHeader>
-                <CardTitle className="text-xl font-bold text-white">Let's Connect</CardTitle>
-                <CardDescription className="text-neutral-500">Reach out anytime</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-2">
-                {contactInfo.map((info, i) => {
-                  const Icon = info.icon;
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+          {/* Left sidebar - contact info */}
+          <motion.div variants={itemVariants} className="lg:col-span-2 space-y-4">
+            {/* Contact details */}
+            <div className="rounded-2xl border border-neutral-800/40 bg-neutral-950/60 backdrop-blur-sm p-5 space-y-3">
+              {contactInfo.map((info, i) => {
+                const Icon = info.icon;
+                return (
+                  <motion.a
+                    key={i}
+                    href={info.link}
+                    variants={itemVariants}
+                    whileHover={{ x: 4, transition: { duration: 0.2 } }}
+                    className="flex items-center gap-3 p-3 rounded-xl hover:bg-neutral-800/30 transition-colors duration-300 group/item"
+                  >
+                    <div className="p-2 rounded-lg bg-neutral-800/50 border border-neutral-700/20 group-hover/item:bg-emerald-500/10 group-hover/item:border-emerald-500/20 transition-colors duration-300">
+                      <Icon className="w-4 h-4 text-neutral-500 group-hover/item:text-emerald-400 transition-colors duration-300" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-[10px] uppercase tracking-wider text-neutral-600">{info.label}</p>
+                      <p className="text-sm text-neutral-300 group-hover/item:text-white transition-colors truncate">{info.value}</p>
+                    </div>
+                  </motion.a>
+                );
+              })}
+            </div>
+
+            {/* Social links */}
+            <div className="rounded-2xl border border-neutral-800/40 bg-neutral-950/60 backdrop-blur-sm p-5">
+              <p className="text-xs uppercase tracking-wider text-neutral-600 mb-3">Follow</p>
+              <div className="flex gap-2">
+                {socialLinks.map((s, i) => {
+                  const Icon = s.icon;
                   return (
-                    <motion.div
+                    <motion.a
                       key={i}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={isInView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ duration: 0.4, delay: 0.3 + i * 0.08 }}
-                      className="flex items-center gap-3 p-3 rounded-xl bg-neutral-800/20 hover:bg-neutral-800/40 border border-neutral-800/30 hover:border-neutral-700/40 transition-all duration-300 group/item"
+                      href={s.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                      className="p-3 rounded-xl bg-neutral-800/30 text-neutral-500 hover:text-emerald-400 hover:bg-emerald-500/10 transition-all duration-300 border border-neutral-800/30 hover:border-emerald-500/20"
                     >
-                      <div className="p-2 rounded-lg bg-neutral-800/60 border border-neutral-700/30 group-hover/item:scale-110 transition-transform">
-                        <Icon className="w-4 h-4 text-neutral-500 group-hover/item:text-white transition-colors" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-xs text-neutral-600">{info.label}</p>
-                        <a href={info.link} className="text-sm text-neutral-300 hover:text-white transition-colors truncate block">{info.value}</a>
-                      </div>
-                    </motion.div>
+                      <Icon className="w-5 h-5" />
+                    </motion.a>
                   );
                 })}
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
-            <Card className="bg-gradient-to-b from-neutral-900/70 to-neutral-950/40 border-neutral-800/50 hover:border-neutral-700/50 transition-all duration-500">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-lg font-bold text-white">Follow Me</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex gap-3">
-                  {socialLinks.map((s, i) => {
-                    const Icon = s.icon;
-                    return (
-                      <motion.a
-                        key={i}
-                        initial={{ opacity: 0, scale: 0 }}
-                        animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                        transition={{ duration: 0.3, delay: 0.5 + i * 0.08, type: "spring" }}
-                        href={s.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-3 rounded-xl bg-neutral-800/30 text-neutral-500 hover:text-white hover:bg-neutral-800/60 transition-all duration-300 hover:scale-110 border border-neutral-800/40 hover:border-neutral-700/50"
-                      >
-                        <Icon className="w-5 h-5" />
-                      </motion.a>
-                    );
-                  })}
-                </div>
-              </CardContent>
-            </Card>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.6 }}
-            >
-              <Card className="bg-gradient-to-br from-neutral-800/40 to-neutral-900/30 border-neutral-700/40 hover:border-neutral-600/50 transition-all duration-500">
-                <CardContent className="pt-5 pb-5">
-                  <Button 
-                    className="w-full bg-white text-black hover:bg-neutral-200 font-semibold transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(255,255,255,0.08)] group border-0"
-                    onClick={() => window.open("https://drive.google.com/file/d/1jnTVqiNuBN51vE7mCBi6TuBGDwRzvXVO/view?usp=drive_link", "_blank")}
-                  >
-                    <Download className="w-4 h-4 mr-2 group-hover:animate-bounce" /> Download Resume
-                  </Button>
-                </CardContent>
-              </Card>
+            {/* Resume download */}
+            <motion.div variants={itemVariants}>
+              <Button
+                className="w-full bg-white text-black hover:bg-neutral-200 font-semibold py-5 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_4px_30px_rgba(255,255,255,0.06)] group border-0 rounded-xl"
+                onClick={() => window.open("https://drive.google.com/file/d/1jnTVqiNuBN51vE7mCBi6TuBGDwRzvXVO/view?usp=drive_link", "_blank")}
+              >
+                <Download className="w-4 h-4 mr-2 group-hover:animate-bounce" /> Download Resume
+              </Button>
             </motion.div>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="lg:col-span-2"
-          >
-            <Card className="bg-gradient-to-b from-neutral-900/70 to-neutral-950/40 backdrop-blur-xl border-neutral-800/50 hover:border-neutral-700/50 transition-all duration-500">
-              <CardHeader>
-                <CardTitle className="text-xl font-bold text-white">Send a Message</CardTitle>
-                <CardDescription className="text-neutral-500">I'd love to hear about your project</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="name" className="text-neutral-400 text-sm">Name</Label>
-                      <Input id="name" name="name" value={formData.name} onChange={handleInputChange} placeholder="Your name" className="bg-neutral-800/30 border-neutral-700/40 focus:border-neutral-500 text-white placeholder:text-neutral-600 transition-all duration-300 rounded-xl" required />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email" className="text-neutral-400 text-sm">Email</Label>
-                      <Input id="email" name="email" type="email" value={formData.email} onChange={handleInputChange} placeholder="your@email.com" className="bg-neutral-800/30 border-neutral-700/40 focus:border-neutral-500 text-white placeholder:text-neutral-600 transition-all duration-300 rounded-xl" required />
-                    </div>
+          {/* Right - form */}
+          <motion.div variants={itemVariants} className="lg:col-span-3">
+            <div className="rounded-2xl border border-neutral-800/40 bg-neutral-950/60 backdrop-blur-sm p-6 sm:p-8">
+              <h3 className="text-lg font-bold text-white mb-1">Send a Message</h3>
+              <p className="text-neutral-600 text-xs mb-6">I'll get back to you as soon as possible.</p>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-1.5">
+                    <Label htmlFor="name" className="text-neutral-500 text-xs">Name</Label>
+                    <Input id="name" name="name" value={formData.name} onChange={handleInputChange} placeholder="Your name" className="bg-neutral-900/50 border-neutral-800/50 focus:border-emerald-500/30 text-white placeholder:text-neutral-700 transition-all duration-300 rounded-xl h-11" required />
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="subject" className="text-neutral-400 text-sm">Subject</Label>
-                    <Input id="subject" name="subject" value={formData.subject} onChange={handleInputChange} placeholder="What's this about?" className="bg-neutral-800/30 border-neutral-700/40 focus:border-neutral-500 text-white placeholder:text-neutral-600 transition-all duration-300 rounded-xl" required />
+                  <div className="space-y-1.5">
+                    <Label htmlFor="email" className="text-neutral-500 text-xs">Email</Label>
+                    <Input id="email" name="email" type="email" value={formData.email} onChange={handleInputChange} placeholder="your@email.com" className="bg-neutral-900/50 border-neutral-800/50 focus:border-emerald-500/30 text-white placeholder:text-neutral-700 transition-all duration-300 rounded-xl h-11" required />
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="message" className="text-neutral-400 text-sm">Message</Label>
-                    <Textarea id="message" name="message" value={formData.message} onChange={handleInputChange} placeholder="Tell me about your project..." className="bg-neutral-800/30 border-neutral-700/40 focus:border-neutral-500 text-white placeholder:text-neutral-600 min-h-[120px] resize-none transition-all duration-300 rounded-xl" required />
-                  </div>
-                  <Button type="submit" className="w-full bg-white text-black hover:bg-neutral-200 font-semibold py-3 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(255,255,255,0.08)] group border-0">
-                    <Send className="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform" /> Send Message
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
+                </div>
+                <div className="space-y-1.5">
+                  <Label htmlFor="subject" className="text-neutral-500 text-xs">Subject</Label>
+                  <Input id="subject" name="subject" value={formData.subject} onChange={handleInputChange} placeholder="What's this about?" className="bg-neutral-900/50 border-neutral-800/50 focus:border-emerald-500/30 text-white placeholder:text-neutral-700 transition-all duration-300 rounded-xl h-11" required />
+                </div>
+                <div className="space-y-1.5">
+                  <Label htmlFor="message" className="text-neutral-500 text-xs">Message</Label>
+                  <Textarea id="message" name="message" value={formData.message} onChange={handleInputChange} placeholder="Tell me about your project..." className="bg-neutral-900/50 border-neutral-800/50 focus:border-emerald-500/30 text-white placeholder:text-neutral-700 min-h-[130px] resize-none transition-all duration-300 rounded-xl" required />
+                </div>
+                <Button type="submit" className="w-full bg-white text-black hover:bg-neutral-200 font-semibold py-5 transition-all duration-300 hover:scale-[1.01] hover:shadow-[0_4px_30px_rgba(255,255,255,0.06)] group border-0 rounded-xl">
+                  <Send className="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform" /> Send Message
+                </Button>
+              </form>
+            </div>
           </motion.div>
         </div>
 
         {/* Quote */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.7 }}
-          className="text-center"
-        >
-          <div className="max-w-3xl mx-auto relative group">
-            <div className="absolute -inset-[1px] bg-gradient-to-r from-neutral-700/20 via-neutral-600/30 to-neutral-700/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-            <div className="relative bg-gradient-to-b from-neutral-900/60 to-neutral-950/40 backdrop-blur-xl p-8 rounded-2xl border border-neutral-800/50">
-              <Quote className="h-6 w-6 text-neutral-700 mx-auto mb-4" />
-              <blockquote className="text-base italic text-neutral-400 leading-relaxed">
-                "Success is not final, failure is not fatal: it is the courage to continue that counts."
-              </blockquote>
-              <cite className="text-xs text-neutral-600 mt-4 block">— His Majesty Jigme Khesar Namgyel Wangchuck</cite>
-            </div>
+        <motion.div variants={itemVariants} className="text-center mt-16">
+          <div className="max-w-2xl mx-auto px-8 py-6">
+            <Quote className="h-5 w-5 text-neutral-800 mx-auto mb-3" />
+            <blockquote className="text-sm italic text-neutral-500 leading-relaxed">
+              "Success is not final, failure is not fatal: it is the courage to continue that counts."
+            </blockquote>
+            <cite className="text-[11px] text-neutral-700 mt-3 block">— His Majesty Jigme Khesar Namgyel Wangchuck</cite>
           </div>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }
