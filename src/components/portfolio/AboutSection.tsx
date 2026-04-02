@@ -48,10 +48,10 @@ export function AboutSection() {
                 </motion.p>
                 
                 {[
-                  <>I'm currently serving as an <span className="font-semibold text-white">IT Associate Manager at Tashi Commercial Corporation</span>, where I lead technology initiatives and drive digital transformation. My journey combines a passion for computer science with real-world business impact.</>,
-                  <>What drives me is the endless possibility of turning innovative ideas into reality through code. I oversee IT infrastructure, implement strategic technology solutions, and lead digital initiatives that enhance business efficiency and growth.</>,
-                  <>From mastering React's intricacies to understanding AI fundamentals, from digital marketing strategies to enterprise IT management - I'm constantly expanding my skillset to stay at the forefront of technology.</>,
-                  <>When I'm not managing IT operations, I'm exploring emerging technologies, contributing to open-source projects, and sharing knowledge. My goal is to create digital experiences that are truly meaningful and impactful.</>
+                  <>I'm currently working as a <span className="font-semibold text-white">Product Engineer at Bhutan Telecom</span>, where I design and build telecom products and digital solutions that shape Bhutan's connectivity landscape. Previously, I served as IT Associate Manager at Tashi Commercial Corporation.</>,
+                  <>What drives me is the challenge of engineering products that truly matter — from architecting scalable telecom systems to crafting seamless user experiences. I thrive at the intersection of technology and impact.</>,
+                  <>My toolkit spans modern frontend frameworks like React, backend integrations, system architecture, and product thinking. I'm passionate about building products that solve real problems — whether it's enterprise software or consumer-facing digital experiences.</>,
+                  <>Outside of work, I'm constantly learning — exploring new technologies, refining my craft, and pushing boundaries. My goal is to build products that leave a lasting mark on the digital world.</>
                 ].map((text, i) => (
                   <motion.p
                     key={i}
