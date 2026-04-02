@@ -6,7 +6,7 @@ export function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const timers: NodeJS.Timeout[] = [];
+    const timers: ReturnType<typeof setTimeout>[] = [];
     
     // Phase 1: Show first name letters animate in
     timers.push(setTimeout(() => setPhase('name'), 400));
