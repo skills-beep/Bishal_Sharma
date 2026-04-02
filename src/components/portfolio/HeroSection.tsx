@@ -123,7 +123,7 @@ export function HeroSection() {
             whileHover={{ scale: 1.05, y: -4 }}
           >
             <Briefcase className="h-5 w-5 text-cyan-400/70 mb-2 group-hover:text-cyan-400 transition-colors" />
-            <span className="text-xs text-neutral-400 tracking-wider">IT Associate Manager</span>
+            <span className="text-xs text-neutral-400 tracking-wider">Product Engineer</span>
           </motion.div>
         </div>
 
