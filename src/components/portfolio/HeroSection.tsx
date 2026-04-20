@@ -28,9 +28,10 @@ export function HeroSection() {
 
   return (
     <section id="home" className="min-h-screen flex items-center px-4 sm:px-6 lg:px-8 pt-20 pb-12 relative overflow-hidden">
-      {/* Ambient glow */}
-      <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[200px]" />
-      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-cyan-500/5 rounded-full blur-[180px]" />
+      {/* Ambient glow — richer */}
+      <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[180px] animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-[160px] animate-pulse" style={{ animationDelay: '1.5s' }} />
+      <div className="absolute top-1/2 right-1/3 w-[300px] h-[300px] bg-teal-400/[0.06] rounded-full blur-[140px]" />
 
       <motion.div
         variants={containerVariants}
