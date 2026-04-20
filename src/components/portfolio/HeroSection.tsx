@@ -28,9 +28,10 @@ export function HeroSection() {
 
   return (
     <section id="home" className="min-h-screen flex items-center px-4 sm:px-6 lg:px-8 pt-20 pb-12 relative overflow-hidden">
-      {/* Ambient glow */}
-      <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[200px]" />
-      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-cyan-500/5 rounded-full blur-[180px]" />
+      {/* Ambient glow — richer */}
+      <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[180px] animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-[160px] animate-pulse" style={{ animationDelay: '1.5s' }} />
+      <div className="absolute top-1/2 right-1/3 w-[300px] h-[300px] bg-teal-400/[0.06] rounded-full blur-[140px]" />
 
       <motion.div
         variants={containerVariants}
@@ -48,17 +49,20 @@ export function HeroSection() {
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-emerald-500/5 to-transparent rounded-full blur-[80px] group-hover:from-emerald-500/10 transition-all duration-700" />
             
-            <p className="text-xs sm:text-sm text-neutral-500 tracking-[0.3em] uppercase mb-4 relative z-10">
-              Hi there, I'm
-            </p>
+            <div className="flex items-center gap-2 mb-4 relative z-10">
+              <span className="h-[1px] w-8 bg-gradient-to-r from-emerald-400/60 to-transparent" />
+              <p className="text-xs sm:text-sm text-emerald-400/80 tracking-[0.3em] uppercase font-medium">
+                Hi there, I'm
+              </p>
+            </div>
             <h1 className="text-5xl sm:text-6xl lg:text-8xl font-black leading-[0.9] tracking-tight mb-6 relative z-10">
-              <span className="text-white block">Bishal</span>
-              <span className="text-transparent block mt-1" style={{ WebkitTextStroke: '1.5px rgba(255,255,255,0.4)' }}>
+              <span className="block bg-gradient-to-b from-white via-white to-neutral-400 bg-clip-text text-transparent">Bishal</span>
+              <span className="text-transparent block mt-1" style={{ WebkitTextStroke: '1.5px rgba(52, 211, 153, 0.55)' }}>
                 Sharma
               </span>
             </h1>
-            <p className="text-lg sm:text-xl text-neutral-400 font-light mb-2 relative z-10">
-              Frontend Developer <span className="text-emerald-400/80">&</span> UI/UX Enthusiast
+            <p className="text-lg sm:text-xl text-neutral-300 font-light mb-3 relative z-10">
+              Product Engineer <span className="text-emerald-400">&</span> UI/UX Enthusiast
             </p>
             <p className="text-sm text-neutral-500 max-w-md leading-relaxed relative z-10">
               I design and build clean, modern, and responsive web experiences
