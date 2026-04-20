@@ -8,17 +8,17 @@ export function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
   useEffect(() => {
     const timers: ReturnType<typeof setTimeout>[] = [];
 
-    timers.push(setTimeout(() => setPhase('name'), 400));
-    timers.push(setTimeout(() => setPhase('title'), 1800));
-    timers.push(setTimeout(() => setPhase('reveal'), 3400));
+    timers.push(setTimeout(() => setPhase('name'), 100));
+    timers.push(setTimeout(() => setPhase('title'), 900));
+    timers.push(setTimeout(() => setPhase('reveal'), 2000));
     timers.push(setTimeout(() => {
       setPhase('done');
       onComplete();
-    }, 4400));
+    }, 2700));
 
     // Smooth progress counter
     const start = performance.now();
-    const duration = 3400;
+    const duration = 2000;
     let raf = 0;
     const tick = (now: number) => {
       const p = Math.min(100, Math.round(((now - start) / duration) * 100));
