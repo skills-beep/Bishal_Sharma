@@ -40,14 +40,15 @@ export function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
     <div
       ref={containerRef}
       className={`fixed inset-0 z-50 flex items-center justify-center overflow-hidden transition-opacity duration-700 ${phase === 'done' ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+      style={{ height: '100dvh' }}
     >
       {/* Deep gradient base */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_#0b1f1a_0%,_#05060a_55%,_#000_100%)]" />
 
-      {/* Color glow orbs */}
-      <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-emerald-500/15 rounded-full blur-[180px] animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[160px] animate-pulse" style={{ animationDelay: '1s' }} />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-teal-400/[0.06] rounded-full blur-[200px]" />
+      {/* Color glow orbs — sized down on mobile to avoid overflow */}
+      <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] sm:w-[600px] sm:h-[600px] -translate-x-1/2 bg-emerald-500/15 rounded-full blur-[120px] sm:blur-[180px] animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-[260px] h-[260px] sm:w-[500px] sm:h-[500px] translate-x-1/2 bg-cyan-500/10 rounded-full blur-[100px] sm:blur-[160px] animate-pulse" style={{ animationDelay: '1s' }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[360px] h-[360px] sm:w-[700px] sm:h-[700px] bg-teal-400/[0.06] rounded-full blur-[140px] sm:blur-[200px]" />
 
       {/* Noise texture */}
       <div
@@ -70,11 +71,11 @@ export function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
       <div className={`absolute left-0 right-0 top-1/2 h-[1px] bg-gradient-to-r from-transparent via-emerald-400/30 to-transparent transition-all duration-1000 ${phase === 'initial' ? 'scale-x-0' : 'scale-x-100'}`} />
       <div className={`absolute top-0 bottom-0 left-1/2 w-[1px] bg-gradient-to-b from-transparent via-cyan-400/20 to-transparent transition-all duration-1000 delay-200 ${phase === 'initial' ? 'scale-y-0' : 'scale-y-100'}`} />
 
-      <div className="text-center z-10 relative px-6">
+      <div className="text-center z-10 relative px-4 sm:px-6 w-full max-w-full">
         {/* Top label */}
-        <div className="overflow-hidden mb-6">
+        <div className="overflow-hidden mb-4 sm:mb-6">
           <p
-            className="text-[10px] sm:text-xs tracking-[0.5em] uppercase text-emerald-400/70 font-medium"
+            className="text-[9px] sm:text-xs tracking-[0.4em] sm:tracking-[0.5em] uppercase text-emerald-400/70 font-medium"
             style={{
               opacity: phase === 'initial' ? 0 : 1,
               transform: phase === 'initial' ? 'translateY(20px)' : 'translateY(0)',
@@ -87,11 +88,11 @@ export function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
 
         {/* First name — gradient fill */}
         <div className="overflow-hidden mb-1">
-          <div className="flex justify-center gap-[2px] sm:gap-1">
+          <div className="flex justify-center gap-[1px] sm:gap-1">
             {nameLetters.map((letter, i) => (
               <span
                 key={`first-${i}`}
-                className="text-5xl sm:text-7xl md:text-8xl lg:text-[8.5rem] font-black tracking-tighter inline-block bg-gradient-to-b from-white via-white to-neutral-400 bg-clip-text text-transparent"
+                className="text-[2.5rem] xs:text-5xl sm:text-7xl md:text-8xl lg:text-[8.5rem] font-black tracking-tighter inline-block bg-gradient-to-b from-white via-white to-neutral-400 bg-clip-text text-transparent leading-none"
                 style={{
                   transitionDelay: `${i * 70 + 200}ms`,
                   opacity: phase === 'initial' ? 0 : 1,
@@ -107,14 +108,14 @@ export function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
         </div>
 
         {/* Last name — outlined */}
-        <div className="overflow-hidden mb-8">
-          <div className="flex justify-center gap-[2px] sm:gap-1">
+        <div className="overflow-hidden mb-6 sm:mb-8">
+          <div className="flex justify-center gap-[1px] sm:gap-1">
             {surnameLetters.map((letter, i) => (
               <span
                 key={`last-${i}`}
-                className="text-5xl sm:text-7xl md:text-8xl lg:text-[8.5rem] font-black text-transparent tracking-tighter inline-block"
+                className="text-[2.5rem] xs:text-5xl sm:text-7xl md:text-8xl lg:text-[8.5rem] font-black text-transparent tracking-tighter inline-block leading-none"
                 style={{
-                  WebkitTextStroke: '1.5px rgba(52, 211, 153, 0.6)',
+                  WebkitTextStroke: '1.2px rgba(52, 211, 153, 0.6)',
                   transitionDelay: `${i * 70 + 600}ms`,
                   opacity: phase === 'initial' ? 0 : 1,
                   transform: phase === 'initial' ? 'translateY(100%) rotateX(80deg)' : 'translateY(0) rotateX(0)',
@@ -144,7 +145,7 @@ export function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
         {/* Title */}
         <div className="overflow-hidden">
           <p
-            className="text-xs sm:text-sm md:text-base tracking-[0.4em] uppercase text-neutral-300 font-light"
+            className="text-[10px] sm:text-sm md:text-base tracking-[0.3em] sm:tracking-[0.4em] uppercase text-neutral-300 font-light px-2"
             style={{
               opacity: phase === 'title' || phase === 'reveal' ? 1 : 0,
               transform: phase === 'title' || phase === 'reveal' ? 'translateY(0)' : 'translateY(30px)',
@@ -158,8 +159,8 @@ export function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
         </div>
 
         {/* Progress + counter */}
-        <div className="mt-14 w-56 sm:w-72 mx-auto">
-          <div className="flex justify-between items-center mb-2 text-[10px] tracking-[0.3em] uppercase text-neutral-500 font-mono">
+        <div className="mt-8 sm:mt-14 w-44 sm:w-72 mx-auto">
+          <div className="flex justify-between items-center mb-2 text-[9px] sm:text-[10px] tracking-[0.25em] sm:tracking-[0.3em] uppercase text-neutral-500 font-mono">
             <span>Loading</span>
             <span className="text-emerald-400/80 tabular-nums">{String(progress).padStart(3, '0')}%</span>
           </div>
@@ -178,21 +179,21 @@ export function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
 
       {/* Corner accents — refined */}
       {[
-        'top-6 left-6 border-l border-t',
-        'top-6 right-6 border-r border-t',
-        'bottom-6 left-6 border-l border-b',
-        'bottom-6 right-6 border-r border-b',
+        'top-3 left-3 sm:top-6 sm:left-6 border-l border-t',
+        'top-3 right-3 sm:top-6 sm:right-6 border-r border-t',
+        'bottom-3 left-3 sm:bottom-6 sm:left-6 border-l border-b',
+        'bottom-3 right-3 sm:bottom-6 sm:right-6 border-r border-b',
       ].map((pos, i) => (
         <div
           key={pos}
-          className={`absolute ${pos} w-10 h-10 sm:w-14 sm:h-14 border-emerald-400/30 transition-all duration-1000 ${phase === 'initial' ? 'opacity-0 scale-50' : 'opacity-100 scale-100'}`}
+          className={`absolute ${pos} w-7 h-7 sm:w-14 sm:h-14 border-emerald-400/30 transition-all duration-1000 ${phase === 'initial' ? 'opacity-0 scale-50' : 'opacity-100 scale-100'}`}
           style={{ transitionDelay: `${i * 100}ms` }}
         />
       ))}
 
-      {/* Bottom signature */}
+      {/* Bottom signature — hidden on tiny screens to avoid collision */}
       <div
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[9px] tracking-[0.4em] uppercase text-neutral-600 font-mono"
+        className="hidden sm:block absolute bottom-6 left-1/2 -translate-x-1/2 text-[9px] tracking-[0.4em] uppercase text-neutral-600 font-mono whitespace-nowrap"
         style={{
           opacity: phase === 'initial' ? 0 : 1,
           transition: 'opacity 1s ease-out 0.6s',
