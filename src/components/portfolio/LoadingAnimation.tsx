@@ -71,11 +71,11 @@ export function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
       <div className={`absolute left-0 right-0 top-1/2 h-[1px] bg-gradient-to-r from-transparent via-emerald-400/30 to-transparent transition-all duration-1000 ${phase === 'initial' ? 'scale-x-0' : 'scale-x-100'}`} />
       <div className={`absolute top-0 bottom-0 left-1/2 w-[1px] bg-gradient-to-b from-transparent via-cyan-400/20 to-transparent transition-all duration-1000 delay-200 ${phase === 'initial' ? 'scale-y-0' : 'scale-y-100'}`} />
 
-      <div className="text-center z-10 relative px-6">
+      <div className="text-center z-10 relative px-4 sm:px-6 w-full max-w-full">
         {/* Top label */}
-        <div className="overflow-hidden mb-6">
+        <div className="overflow-hidden mb-4 sm:mb-6">
           <p
-            className="text-[10px] sm:text-xs tracking-[0.5em] uppercase text-emerald-400/70 font-medium"
+            className="text-[9px] sm:text-xs tracking-[0.4em] sm:tracking-[0.5em] uppercase text-emerald-400/70 font-medium"
             style={{
               opacity: phase === 'initial' ? 0 : 1,
               transform: phase === 'initial' ? 'translateY(20px)' : 'translateY(0)',
@@ -88,11 +88,11 @@ export function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
 
         {/* First name — gradient fill */}
         <div className="overflow-hidden mb-1">
-          <div className="flex justify-center gap-[2px] sm:gap-1">
+          <div className="flex justify-center gap-[1px] sm:gap-1">
             {nameLetters.map((letter, i) => (
               <span
                 key={`first-${i}`}
-                className="text-5xl sm:text-7xl md:text-8xl lg:text-[8.5rem] font-black tracking-tighter inline-block bg-gradient-to-b from-white via-white to-neutral-400 bg-clip-text text-transparent"
+                className="text-[2.5rem] xs:text-5xl sm:text-7xl md:text-8xl lg:text-[8.5rem] font-black tracking-tighter inline-block bg-gradient-to-b from-white via-white to-neutral-400 bg-clip-text text-transparent leading-none"
                 style={{
                   transitionDelay: `${i * 70 + 200}ms`,
                   opacity: phase === 'initial' ? 0 : 1,
@@ -108,14 +108,14 @@ export function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
         </div>
 
         {/* Last name — outlined */}
-        <div className="overflow-hidden mb-8">
-          <div className="flex justify-center gap-[2px] sm:gap-1">
+        <div className="overflow-hidden mb-6 sm:mb-8">
+          <div className="flex justify-center gap-[1px] sm:gap-1">
             {surnameLetters.map((letter, i) => (
               <span
                 key={`last-${i}`}
-                className="text-5xl sm:text-7xl md:text-8xl lg:text-[8.5rem] font-black text-transparent tracking-tighter inline-block"
+                className="text-[2.5rem] xs:text-5xl sm:text-7xl md:text-8xl lg:text-[8.5rem] font-black text-transparent tracking-tighter inline-block leading-none"
                 style={{
-                  WebkitTextStroke: '1.5px rgba(52, 211, 153, 0.6)',
+                  WebkitTextStroke: '1.2px rgba(52, 211, 153, 0.6)',
                   transitionDelay: `${i * 70 + 600}ms`,
                   opacity: phase === 'initial' ? 0 : 1,
                   transform: phase === 'initial' ? 'translateY(100%) rotateX(80deg)' : 'translateY(0) rotateX(0)',
