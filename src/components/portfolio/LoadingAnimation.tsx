@@ -145,7 +145,7 @@ export function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
         {/* Title */}
         <div className="overflow-hidden">
           <p
-            className="text-xs sm:text-sm md:text-base tracking-[0.4em] uppercase text-neutral-300 font-light"
+            className="text-[10px] sm:text-sm md:text-base tracking-[0.3em] sm:tracking-[0.4em] uppercase text-neutral-300 font-light px-2"
             style={{
               opacity: phase === 'title' || phase === 'reveal' ? 1 : 0,
               transform: phase === 'title' || phase === 'reveal' ? 'translateY(0)' : 'translateY(30px)',
@@ -159,8 +159,8 @@ export function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
         </div>
 
         {/* Progress + counter */}
-        <div className="mt-14 w-56 sm:w-72 mx-auto">
-          <div className="flex justify-between items-center mb-2 text-[10px] tracking-[0.3em] uppercase text-neutral-500 font-mono">
+        <div className="mt-8 sm:mt-14 w-44 sm:w-72 mx-auto">
+          <div className="flex justify-between items-center mb-2 text-[9px] sm:text-[10px] tracking-[0.25em] sm:tracking-[0.3em] uppercase text-neutral-500 font-mono">
             <span>Loading</span>
             <span className="text-emerald-400/80 tabular-nums">{String(progress).padStart(3, '0')}%</span>
           </div>
@@ -179,21 +179,21 @@ export function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
 
       {/* Corner accents — refined */}
       {[
-        'top-6 left-6 border-l border-t',
-        'top-6 right-6 border-r border-t',
-        'bottom-6 left-6 border-l border-b',
-        'bottom-6 right-6 border-r border-b',
+        'top-3 left-3 sm:top-6 sm:left-6 border-l border-t',
+        'top-3 right-3 sm:top-6 sm:right-6 border-r border-t',
+        'bottom-3 left-3 sm:bottom-6 sm:left-6 border-l border-b',
+        'bottom-3 right-3 sm:bottom-6 sm:right-6 border-r border-b',
       ].map((pos, i) => (
         <div
           key={pos}
-          className={`absolute ${pos} w-10 h-10 sm:w-14 sm:h-14 border-emerald-400/30 transition-all duration-1000 ${phase === 'initial' ? 'opacity-0 scale-50' : 'opacity-100 scale-100'}`}
+          className={`absolute ${pos} w-7 h-7 sm:w-14 sm:h-14 border-emerald-400/30 transition-all duration-1000 ${phase === 'initial' ? 'opacity-0 scale-50' : 'opacity-100 scale-100'}`}
           style={{ transitionDelay: `${i * 100}ms` }}
         />
       ))}
 
-      {/* Bottom signature */}
+      {/* Bottom signature — hidden on tiny screens to avoid collision */}
       <div
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[9px] tracking-[0.4em] uppercase text-neutral-600 font-mono"
+        className="hidden sm:block absolute bottom-6 left-1/2 -translate-x-1/2 text-[9px] tracking-[0.4em] uppercase text-neutral-600 font-mono whitespace-nowrap"
         style={{
           opacity: phase === 'initial' ? 0 : 1,
           transition: 'opacity 1s ease-out 0.6s',
