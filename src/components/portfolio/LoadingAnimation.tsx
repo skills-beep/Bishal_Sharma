@@ -45,10 +45,10 @@ export function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
       {/* Deep gradient base */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_#0b1f1a_0%,_#05060a_55%,_#000_100%)]" />
 
-      {/* Color glow orbs */}
-      <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-emerald-500/15 rounded-full blur-[180px] animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[160px] animate-pulse" style={{ animationDelay: '1s' }} />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-teal-400/[0.06] rounded-full blur-[200px]" />
+      {/* Color glow orbs — sized down on mobile to avoid overflow */}
+      <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] sm:w-[600px] sm:h-[600px] -translate-x-1/2 bg-emerald-500/15 rounded-full blur-[120px] sm:blur-[180px] animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/4 w-[260px] h-[260px] sm:w-[500px] sm:h-[500px] translate-x-1/2 bg-cyan-500/10 rounded-full blur-[100px] sm:blur-[160px] animate-pulse" style={{ animationDelay: '1s' }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[360px] h-[360px] sm:w-[700px] sm:h-[700px] bg-teal-400/[0.06] rounded-full blur-[140px] sm:blur-[200px]" />
 
       {/* Noise texture */}
       <div
