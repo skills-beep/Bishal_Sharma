@@ -40,6 +40,7 @@ export function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
     <div
       ref={containerRef}
       className={`fixed inset-0 z-50 flex items-center justify-center overflow-hidden transition-opacity duration-700 ${phase === 'done' ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+      style={{ height: '100dvh' }}
     >
       {/* Deep gradient base */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_#0b1f1a_0%,_#05060a_55%,_#000_100%)]" />
