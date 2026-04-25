@@ -47,19 +47,17 @@ export function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
   return (
     <div
       ref={containerRef}
-      className={`fixed inset-0 z-50 flex items-center justify-center overflow-hidden transition-opacity duration-700 ${phase === 'done' ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+      className={`splash-root fixed inset-0 z-50 flex items-center justify-center overflow-hidden transition-opacity duration-700 ${phase === 'done' ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
       style={{
         // iOS Safari–safe full viewport height with progressive fallbacks
         height: '100vh',
         minHeight: '-webkit-fill-available',
-        // @ts-expect-error – fallback chain for newer browsers
-        ['--svh' as any]: '100svh',
         perspective: '1000px',
         WebkitPerspective: '1000px',
         maxWidth: '100vw',
       }}
     >
-      {/* Apply dvh via inline style for browsers that support it */}
+      {/* Prefer dvh on browsers that support it (handles iOS Safari URL bar) */}
       <style>{`
         @supports (height: 100dvh) {
           .splash-root { height: 100dvh !important; }
