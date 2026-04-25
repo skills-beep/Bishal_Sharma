@@ -6,6 +6,12 @@ export function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Lock body scroll on mobile to prevent iOS rubber-banding showing white edges
+    const prevOverflow = document.body.style.overflow;
+    const prevOverscroll = document.documentElement.style.overscrollBehavior;
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overscrollBehavior = 'none';
+
     const timers: ReturnType<typeof setTimeout>[] = [];
 
     timers.push(setTimeout(() => setPhase('name'), 100));
@@ -30,6 +36,8 @@ export function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
     return () => {
       timers.forEach(clearTimeout);
       cancelAnimationFrame(raf);
+      document.body.style.overflow = prevOverflow;
+      document.documentElement.style.overscrollBehavior = prevOverscroll;
     };
   }, [onComplete]);
 
@@ -39,20 +47,34 @@ export function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
   return (
     <div
       ref={containerRef}
-      className={`fixed inset-0 z-50 flex items-center justify-center overflow-hidden transition-opacity duration-700 ${phase === 'done' ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
-      style={{ height: '100dvh' }}
+      className={`splash-root fixed inset-0 z-50 flex items-center justify-center overflow-hidden transition-opacity duration-700 ${phase === 'done' ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+      style={{
+        // iOS Safari–safe full viewport height with progressive fallbacks
+        height: '100vh',
+        minHeight: '-webkit-fill-available',
+        perspective: '1000px',
+        WebkitPerspective: '1000px',
+        maxWidth: '100vw',
+      }}
     >
+      {/* Prefer dvh on browsers that support it (handles iOS Safari URL bar) */}
+      <style>{`
+        @supports (height: 100dvh) {
+          .splash-root { height: 100dvh !important; }
+        }
+      `}</style>
+
       {/* Deep gradient base */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_#0b1f1a_0%,_#05060a_55%,_#000_100%)]" />
 
-      {/* Color glow orbs — sized down on mobile to avoid overflow */}
-      <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] sm:w-[600px] sm:h-[600px] -translate-x-1/2 bg-emerald-500/15 rounded-full blur-[120px] sm:blur-[180px] animate-pulse" />
-      <div className="absolute bottom-1/4 right-1/4 w-[260px] h-[260px] sm:w-[500px] sm:h-[500px] translate-x-1/2 bg-cyan-500/10 rounded-full blur-[100px] sm:blur-[160px] animate-pulse" style={{ animationDelay: '1s' }} />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[360px] h-[360px] sm:w-[700px] sm:h-[700px] bg-teal-400/[0.06] rounded-full blur-[140px] sm:blur-[200px]" />
+      {/* Color glow orbs — kept inside viewport on mobile */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[220px] h-[220px] sm:left-1/4 sm:translate-x-[-50%] sm:w-[600px] sm:h-[600px] bg-emerald-500/15 rounded-full blur-[90px] sm:blur-[180px] animate-pulse" />
+      <div className="absolute bottom-1/4 left-1/2 -translate-x-1/2 w-[200px] h-[200px] sm:left-auto sm:right-1/4 sm:translate-x-1/2 sm:w-[500px] sm:h-[500px] bg-cyan-500/10 rounded-full blur-[80px] sm:blur-[160px] animate-pulse" style={{ animationDelay: '1s' }} />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] sm:w-[700px] sm:h-[700px] bg-teal-400/[0.06] rounded-full blur-[110px] sm:blur-[200px]" />
 
       {/* Noise texture */}
       <div
-        className="absolute inset-0 opacity-[0.04] mix-blend-overlay"
+        className="absolute inset-0 opacity-[0.04] mix-blend-overlay pointer-events-none"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
         }}
@@ -60,7 +82,7 @@ export function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
 
       {/* Subtle dot grid */}
       <div
-        className="absolute inset-0 opacity-[0.05]"
+        className="absolute inset-0 opacity-[0.05] pointer-events-none"
         style={{
           backgroundImage: `radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px)`,
           backgroundSize: '36px 36px',
@@ -68,15 +90,16 @@ export function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
       />
 
       {/* Cross lines */}
-      <div className={`absolute left-0 right-0 top-1/2 h-[1px] bg-gradient-to-r from-transparent via-emerald-400/30 to-transparent transition-all duration-1000 ${phase === 'initial' ? 'scale-x-0' : 'scale-x-100'}`} />
-      <div className={`absolute top-0 bottom-0 left-1/2 w-[1px] bg-gradient-to-b from-transparent via-cyan-400/20 to-transparent transition-all duration-1000 delay-200 ${phase === 'initial' ? 'scale-y-0' : 'scale-y-100'}`} />
+      <div className={`absolute left-0 right-0 top-1/2 h-[1px] bg-gradient-to-r from-transparent via-emerald-400/30 to-transparent transition-all duration-1000 origin-center ${phase === 'initial' ? 'scale-x-0' : 'scale-x-100'}`} />
+      <div className={`absolute top-0 bottom-0 left-1/2 w-[1px] bg-gradient-to-b from-transparent via-cyan-400/20 to-transparent transition-all duration-1000 delay-200 origin-center ${phase === 'initial' ? 'scale-y-0' : 'scale-y-100'}`} />
 
       <div className="text-center z-10 relative px-4 sm:px-6 w-full max-w-full">
         {/* Top label */}
-        <div className="overflow-hidden mb-4 sm:mb-6">
+        <div className="overflow-hidden mb-3 sm:mb-6">
           <p
-            className="text-[9px] sm:text-xs tracking-[0.4em] sm:tracking-[0.5em] uppercase text-emerald-400/70 font-medium"
+            className="tracking-[0.35em] sm:tracking-[0.5em] uppercase text-emerald-400/70 font-medium"
             style={{
+              fontSize: 'clamp(8px, 2.5vw, 12px)',
               opacity: phase === 'initial' ? 0 : 1,
               transform: phase === 'initial' ? 'translateY(20px)' : 'translateY(0)',
               transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
@@ -86,19 +109,22 @@ export function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
           </p>
         </div>
 
-        {/* First name — gradient fill */}
-        <div className="overflow-hidden mb-1">
-          <div className="flex justify-center gap-[1px] sm:gap-1">
+        {/* First name — gradient fill (fluid sizing prevents overflow on every phone) */}
+        <div className="overflow-hidden mb-1" style={{ perspective: '800px' }}>
+          <div className="flex justify-center" style={{ gap: 'clamp(1px, 0.3vw, 4px)' }}>
             {nameLetters.map((letter, i) => (
               <span
                 key={`first-${i}`}
-                className="text-[2.5rem] xs:text-5xl sm:text-7xl md:text-8xl lg:text-[8.5rem] font-black tracking-tighter inline-block bg-gradient-to-b from-white via-white to-neutral-400 bg-clip-text text-transparent leading-none"
+                className="font-black tracking-tighter inline-block bg-gradient-to-b from-white via-white to-neutral-400 bg-clip-text text-transparent leading-none"
                 style={{
+                  fontSize: 'clamp(2.25rem, 13vw, 8.5rem)',
                   transitionDelay: `${i * 70 + 200}ms`,
                   opacity: phase === 'initial' ? 0 : 1,
                   transform: phase === 'initial' ? 'translateY(100%) rotateX(80deg)' : 'translateY(0) rotateX(0)',
                   transition: 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1)',
                   filter: phase === 'initial' ? 'blur(8px)' : 'blur(0)',
+                  WebkitBackfaceVisibility: 'hidden',
+                  backfaceVisibility: 'hidden',
                 }}
               >
                 {letter}
@@ -108,19 +134,22 @@ export function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
         </div>
 
         {/* Last name — outlined */}
-        <div className="overflow-hidden mb-6 sm:mb-8">
-          <div className="flex justify-center gap-[1px] sm:gap-1">
+        <div className="overflow-hidden mb-5 sm:mb-8" style={{ perspective: '800px' }}>
+          <div className="flex justify-center" style={{ gap: 'clamp(1px, 0.3vw, 4px)' }}>
             {surnameLetters.map((letter, i) => (
               <span
                 key={`last-${i}`}
-                className="text-[2.5rem] xs:text-5xl sm:text-7xl md:text-8xl lg:text-[8.5rem] font-black text-transparent tracking-tighter inline-block leading-none"
+                className="font-black text-transparent tracking-tighter inline-block leading-none"
                 style={{
+                  fontSize: 'clamp(2.25rem, 13vw, 8.5rem)',
                   WebkitTextStroke: '1.2px rgba(52, 211, 153, 0.6)',
                   transitionDelay: `${i * 70 + 600}ms`,
                   opacity: phase === 'initial' ? 0 : 1,
                   transform: phase === 'initial' ? 'translateY(100%) rotateX(80deg)' : 'translateY(0) rotateX(0)',
                   transition: 'all 0.7s cubic-bezier(0.16, 1, 0.3, 1)',
                   filter: phase === 'initial' ? 'blur(8px)' : 'blur(0)',
+                  WebkitBackfaceVisibility: 'hidden',
+                  backfaceVisibility: 'hidden',
                 }}
               >
                 {letter}
@@ -131,22 +160,23 @@ export function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
 
         {/* Divider dot row */}
         <div
-          className="flex justify-center items-center gap-2 mb-5"
+          className="flex justify-center items-center gap-2 mb-4 sm:mb-5"
           style={{
             opacity: phase === 'title' || phase === 'reveal' ? 1 : 0,
             transition: 'opacity 0.6s ease-out',
           }}
         >
-          <span className="h-[1px] w-8 bg-gradient-to-r from-transparent to-emerald-400/60" />
+          <span className="h-[1px] w-6 sm:w-8 bg-gradient-to-r from-transparent to-emerald-400/60" />
           <span className="w-1 h-1 rounded-full bg-emerald-400" />
-          <span className="h-[1px] w-8 bg-gradient-to-l from-transparent to-emerald-400/60" />
+          <span className="h-[1px] w-6 sm:w-8 bg-gradient-to-l from-transparent to-emerald-400/60" />
         </div>
 
         {/* Title */}
         <div className="overflow-hidden">
           <p
-            className="text-[10px] sm:text-sm md:text-base tracking-[0.3em] sm:tracking-[0.4em] uppercase text-neutral-300 font-light px-2"
+            className="tracking-[0.25em] sm:tracking-[0.4em] uppercase text-neutral-300 font-light px-2"
             style={{
+              fontSize: 'clamp(9px, 2.6vw, 16px)',
               opacity: phase === 'title' || phase === 'reveal' ? 1 : 0,
               transform: phase === 'title' || phase === 'reveal' ? 'translateY(0)' : 'translateY(30px)',
               transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
@@ -159,8 +189,11 @@ export function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
         </div>
 
         {/* Progress + counter */}
-        <div className="mt-8 sm:mt-14 w-44 sm:w-72 mx-auto">
-          <div className="flex justify-between items-center mb-2 text-[9px] sm:text-[10px] tracking-[0.25em] sm:tracking-[0.3em] uppercase text-neutral-500 font-mono">
+        <div className="mt-7 sm:mt-14 mx-auto" style={{ width: 'min(75vw, 18rem)' }}>
+          <div
+            className="flex justify-between items-center mb-2 tracking-[0.2em] sm:tracking-[0.3em] uppercase text-neutral-500 font-mono"
+            style={{ fontSize: 'clamp(8px, 2.2vw, 10px)' }}
+          >
             <span>Loading</span>
             <span className="text-emerald-400/80 tabular-nums">{String(progress).padStart(3, '0')}%</span>
           </div>
@@ -177,16 +210,16 @@ export function LoadingAnimation({ onComplete }: { onComplete: () => void }) {
         </div>
       </div>
 
-      {/* Corner accents — refined */}
+      {/* Corner accents — refined, smaller on mobile */}
       {[
-        'top-3 left-3 sm:top-6 sm:left-6 border-l border-t',
-        'top-3 right-3 sm:top-6 sm:right-6 border-r border-t',
-        'bottom-3 left-3 sm:bottom-6 sm:left-6 border-l border-b',
-        'bottom-3 right-3 sm:bottom-6 sm:right-6 border-r border-b',
+        'top-2 left-2 sm:top-6 sm:left-6 border-l border-t',
+        'top-2 right-2 sm:top-6 sm:right-6 border-r border-t',
+        'bottom-2 left-2 sm:bottom-6 sm:left-6 border-l border-b',
+        'bottom-2 right-2 sm:bottom-6 sm:right-6 border-r border-b',
       ].map((pos, i) => (
         <div
           key={pos}
-          className={`absolute ${pos} w-7 h-7 sm:w-14 sm:h-14 border-emerald-400/30 transition-all duration-1000 ${phase === 'initial' ? 'opacity-0 scale-50' : 'opacity-100 scale-100'}`}
+          className={`absolute ${pos} w-5 h-5 sm:w-14 sm:h-14 border-emerald-400/30 transition-all duration-1000 ${phase === 'initial' ? 'opacity-0 scale-50' : 'opacity-100 scale-100'}`}
           style={{ transitionDelay: `${i * 100}ms` }}
         />
       ))}
