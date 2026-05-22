@@ -53,7 +53,7 @@ export function HeroSection() {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center px-4 sm:px-6 lg:px-8 pt-20 pb-12 relative overflow-hidden">
+    <section ref={heroRef} id="home" className="min-h-screen flex items-center px-4 sm:px-6 lg:px-8 pt-20 pb-12 relative overflow-hidden" style={{ perspective: 1200 }}>
       {/* Ambient glow — richer */}
       <div className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[180px] animate-pulse" />
       <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-[160px] animate-pulse" style={{ animationDelay: '1.5s' }} />
