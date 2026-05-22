@@ -211,6 +211,31 @@ export function HeroSection() {
           </div>
         </motion.div>
       </motion.div>
+
+      {/* Resume / CV viewer modal */}
+      <Dialog open={resumeOpen} onOpenChange={setResumeOpen}>
+        <DialogContent className="max-w-5xl w-[95vw] h-[90vh] bg-neutral-950 border-neutral-800 p-0 overflow-hidden">
+          <DialogHeader className="px-6 py-4 border-b border-neutral-800 flex flex-row items-center justify-between space-y-0">
+            <DialogTitle className="text-neutral-100 flex items-center gap-2">
+              <FileText className="h-5 w-5 text-emerald-400" /> Resume & CV — Bishal Sharma
+            </DialogTitle>
+            <div className="flex items-center gap-2">
+              <Button size="sm" onClick={downloadResume} className="bg-emerald-500 hover:bg-emerald-400 text-black rounded-full">
+                <Download className="h-4 w-4 mr-2" /> Download
+              </Button>
+              <Button size="sm" variant="outline" onClick={() => window.open(RESUME_URL, "_blank")} className="border-neutral-700 text-neutral-300 hover:text-white rounded-full">
+                Open in Drive
+              </Button>
+            </div>
+          </DialogHeader>
+          <iframe
+            src={RESUME_PREVIEW_URL}
+            title="Bishal Sharma Resume"
+            className="w-full h-full bg-white"
+            allow="autoplay"
+          />
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }
