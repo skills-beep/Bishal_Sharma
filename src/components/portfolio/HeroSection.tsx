@@ -1,21 +1,47 @@
 
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Download, Mail, Linkedin, MapPin, Briefcase } from "lucide-react";
-import { motion } from "framer-motion";
+import { ArrowRight, Download, Mail, Linkedin, MapPin, Briefcase, FileText, Eye, X } from "lucide-react";
+import { motion, useScroll, useTransform, useSpring, useMotionValue, AnimatePresence } from "framer-motion";
+import { useRef, useState } from "react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+
+const RESUME_FILE_ID = "1ByXBtR0fbb_qdNlmqUIgpaQ8eFjBOS9x";
+const RESUME_URL = `https://drive.google.com/file/d/${RESUME_FILE_ID}/view?usp=drive_link`;
+const RESUME_PREVIEW_URL = `https://drive.google.com/file/d/${RESUME_FILE_ID}/preview`;
+const RESUME_DOWNLOAD_URL = `https://drive.google.com/uc?export=download&id=${RESUME_FILE_ID}`;
 
 export function HeroSection() {
+  const [resumeOpen, setResumeOpen] = useState(false);
+
   const scrollToProjects = () => {
     document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" });
   };
   const scrollToContact = () => {
     document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
   };
-  const openResume = () => {
-    window.open("https://drive.google.com/file/d/1jnTVqiNuBN51vE7mCBi6TuBGDwRzvXVO/view?usp=drive_link", "_blank");
-  };
+  const downloadResume = () => window.open(RESUME_DOWNLOAD_URL, "_blank");
   const openLinkedIn = () => {
     window.open("https://www.linkedin.com/in/bishal-sharma-12b7211b6/", "_blank");
   };
+
+  // 3D scroll parallax
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
+  const imageY = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
+  const textY = useTransform(scrollYProgress, [0, 1], [0, 60]);
+
+  // Mouse-based 3D tilt
+  const mx = useMotionValue(0);
+  const my = useMotionValue(0);
+  const rotateX = useSpring(useTransform(my, [-0.5, 0.5], [10, -10]), { stiffness: 150, damping: 15 });
+  const rotateY = useSpring(useTransform(mx, [-0.5, 0.5], [-10, 10]), { stiffness: 150, damping: 15 });
+  const handleMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    mx.set((e.clientX - rect.left) / rect.width - 0.5);
+    my.set((e.clientY - rect.top) / rect.height - 0.5);
+  };
+  const handleLeave = () => { mx.set(0); my.set(0); };
 
   const containerVariants = {
     hidden: {},
