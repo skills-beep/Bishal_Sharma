@@ -96,23 +96,54 @@ export function HeroSection() {
             </p>
           </motion.div>
 
-          {/* Profile image card - spans 4 cols */}
+          {/* Profile image card - spans 4 cols - 3D tilt + scroll parallax */}
           <motion.div
             variants={itemVariants}
-            className="lg:col-span-4 bg-gradient-to-br from-neutral-900/80 to-neutral-950/60 backdrop-blur-xl rounded-3xl border border-neutral-800/50 relative overflow-hidden group hover:border-neutral-700/50 transition-all duration-700 flex items-center justify-center p-6"
+            onMouseMove={handleMove}
+            onMouseLeave={handleLeave}
+            style={{ y: imageY, scale: imageScale, transformStyle: "preserve-3d" }}
+            className="lg:col-span-4 bg-gradient-to-br from-neutral-900/80 to-neutral-950/60 backdrop-blur-xl rounded-3xl border border-neutral-800/50 relative overflow-hidden group hover:border-emerald-500/30 transition-all duration-700 flex items-center justify-center p-6 min-h-[340px] lg:min-h-[420px]"
           >
-            <div className="relative">
-              <div className="absolute -inset-3 rounded-full border border-neutral-800/50 group-hover:border-emerald-500/20 transition-all duration-700 group-hover:rotate-6" />
+            {/* Animated gradient aura */}
+            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/0 via-cyan-500/0 to-emerald-500/0 group-hover:from-emerald-500/10 group-hover:via-cyan-500/5 group-hover:to-emerald-500/10 transition-all duration-1000" />
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              className="absolute -inset-20 opacity-30"
+              style={{ background: "conic-gradient(from 0deg, transparent, rgba(52,211,153,0.15), transparent, rgba(34,211,238,0.15), transparent)" }}
+            />
+
+            <motion.div
+              style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+              className="relative"
+            >
+              {/* Rotating ring */}
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                className="absolute -inset-4 rounded-full border border-dashed border-emerald-500/30"
+              />
+              <div className="absolute -inset-2 rounded-full bg-gradient-to-tr from-emerald-500/40 via-cyan-400/30 to-emerald-500/40 blur-xl opacity-60 group-hover:opacity-100 transition-opacity duration-700" />
+              <div className="absolute -inset-1 rounded-full bg-gradient-to-tr from-emerald-400 via-cyan-400 to-emerald-400 p-[2px]">
+                <div className="w-full h-full rounded-full bg-neutral-950" />
+              </div>
               <img
                 src="/lovable-uploads/45660422-64cd-4930-89c6-d2a81a4ab7c9.png"
-                alt="Bishal Sharma"
-                className="w-48 h-48 sm:w-56 sm:h-56 lg:w-full lg:h-auto lg:max-w-[240px] object-cover rounded-full shadow-2xl shadow-black/50 relative z-10 transform transition-all duration-700 group-hover:scale-105 grayscale-[30%] group-hover:grayscale-0"
+                alt="Bishal Sharma — Product Engineer"
+                style={{ transform: "translateZ(40px)" }}
+                className="w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72 object-cover rounded-full shadow-[0_25px_60px_-15px_rgba(0,0,0,0.8)] relative z-10 transition-all duration-700 group-hover:scale-105"
               />
-              <div className="absolute bottom-2 right-2 z-20 flex items-center gap-2 bg-neutral-900/90 backdrop-blur-sm px-3 py-1.5 rounded-full border border-neutral-700 shadow-lg">
-                <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-                <span className="text-xs font-medium text-neutral-300">Available</span>
-              </div>
-            </div>
+              <motion.div
+                style={{ transform: "translateZ(60px)" }}
+                className="absolute -bottom-1 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 bg-neutral-900/95 backdrop-blur-md px-4 py-2 rounded-full border border-emerald-500/30 shadow-2xl shadow-emerald-500/20"
+              >
+                <div className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+                </div>
+                <span className="text-xs font-semibold text-neutral-200 tracking-wide">Available for Work</span>
+              </motion.div>
+            </motion.div>
           </motion.div>
 
           {/* CTA buttons row */}
@@ -121,11 +152,14 @@ export function HeroSection() {
             className="lg:col-span-5 bg-gradient-to-br from-neutral-900/60 to-neutral-950/40 backdrop-blur-xl rounded-3xl p-6 border border-neutral-800/50 hover:border-neutral-700/50 transition-all duration-700"
           >
             <div className="flex flex-wrap gap-3">
-              <Button onClick={scrollToProjects} className="bg-emerald-500 hover:bg-emerald-400 text-black px-6 py-2.5 rounded-full flex items-center gap-2 text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(52,211,153,0.2)] group border-0">
+              <Button onClick={scrollToProjects} className="bg-emerald-500 hover:bg-emerald-400 text-black px-6 py-2.5 rounded-full flex items-center gap-2 text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(52,211,153,0.3)] group border-0">
                 View Projects <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button onClick={openResume} variant="outline" className="border border-neutral-700 hover:border-neutral-500 bg-transparent text-neutral-300 hover:text-white px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 hover:bg-white/5 group">
-                <Download className="h-4 w-4 mr-2 group-hover:animate-bounce" /> Resume
+              <Button onClick={() => setResumeOpen(true)} className="bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 hover:to-emerald-400 text-black px-6 py-2.5 rounded-full flex items-center gap-2 text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(34,211,238,0.3)] border-0">
+                <Eye className="h-4 w-4" /> View Resume / CV
+              </Button>
+              <Button onClick={downloadResume} variant="outline" className="border border-neutral-700 hover:border-emerald-500/50 bg-transparent text-neutral-300 hover:text-white px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 hover:bg-white/5 group">
+                <Download className="h-4 w-4 mr-2 group-hover:animate-bounce" /> Download
               </Button>
               <Button onClick={openLinkedIn} variant="outline" className="border border-neutral-700 hover:border-neutral-500 bg-transparent text-neutral-300 hover:text-white px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 hover:bg-white/5">
                 <Linkedin className="h-4 w-4 mr-2" /> LinkedIn
@@ -135,6 +169,7 @@ export function HeroSection() {
               </Button>
             </div>
           </motion.div>
+
 
           {/* Location & Role cards */}
 
